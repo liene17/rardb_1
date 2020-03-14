@@ -3,18 +3,15 @@ package lv.accenture.bootcamp.rardb.network;
 import com.google.gson.Gson;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
+
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.net.URLConnection;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.text.SimpleDateFormat;
-import java.util.Arrays;
-import java.util.Date;
 import java.util.List;
 
 @Component
@@ -27,10 +24,10 @@ import java.util.List;
             try {
                 Path path = Paths.get("./api_key.txt");
                 List<String> fileData = Files.readAllLines(path);
-                System.out.println("fileData = " + fileData);
+//                System.out.println("fileData = " + fileData);
+                String listString = String.join("\n ", fileData);
 
-
-                URL url = new URL(requestUrl + "apikey=[" + fileData + "]&");
+                URL url = new URL(requestUrl + "apikey=" + listString + "&t=iron");
                 HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
                 urlConnection.setRequestMethod("GET");
                 urlConnection.setReadTimeout(3000);
@@ -52,18 +49,12 @@ import java.util.List;
 
                 Gson gson = new Gson();
                 ImdbAPIResponse imdbAPIResponse = gson.fromJson(jsonResponse, ImdbAPIResponse.class);
-                String imdbData = imdbAPIResponse.getResults().getTitle();
-////            System.out.println(sunrise);
-//
-//                SimpleDateFormat simpleDateFormat = new SimpleDateFormat("hh:mm:ss aa");
-//                Date sunriseDate = simpleDateFormat.parse(sunrise);
-//                sunriseDate = new Date(sunriseDate.getTime() + (2 * 60 * 60 * 1000));
-//                //System.out.println(sunriseDate);
-//                return sunriseDate;
+
+                return imdbAPIResponse;
 
             } catch (Exception e) {
                 throw new RuntimeException(e);
             }
         }
     }
-}
+
