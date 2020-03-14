@@ -52,7 +52,7 @@ import java.util.List;
 
                 Gson gson = new Gson();
                 ImdbAPIResponse imdbAPIResponse = gson.fromJson(jsonResponse, ImdbAPIResponse.class);
-//                String imdbData = imdbAPIResponse.getResults().getSunrise();
+                String imdbData = imdbAPIResponse.getResults().getTitle();
 ////            System.out.println(sunrise);
 //
 //                SimpleDateFormat simpleDateFormat = new SimpleDateFormat("hh:mm:ss aa");
