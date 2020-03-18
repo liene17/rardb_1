@@ -1,6 +1,8 @@
 package lv.accenture.bootcamp.rardb.network;
 
-public class ImdbListData {
+import java.io.Serializable;
+
+public class ImdbListData implements Serializable {
     private String Title;
     private String Year;
     private String imdbID;

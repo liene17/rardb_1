@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Your search results</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/index.css}"/>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+</head>
+<body>
+
+<form th:action="@{/search}" method="get">
+    <input type="text" name="title" id="title" placeholder="Start another search" th:value="${title}"/>
+    <button class="btn btn-outline-light" type="Submit">Search</button>
+    <a th:href="@{/login}" class="btn btn-warning">
+        <span> <b>HOME</b></span>
+    </a>
+</form>
+<div th:if="${not #lists.isEmpty(movies)}">
+    <table class="table table-bordered">
+        <tr class="bg-warning">
+            <th>Title</th>
+            <th>Year</th>
+            <th>imdbID</th>
+            <th>Type</th>
+            <th>Poster</th>
+        </tr>
+        <tr th:each="movie: ${movies}" class="table-warning">
+            <td th:text="${movie.Title}"/>
+            <td th:text="${movie.Year}"/>
+            <td th:text="${movie.imdbID}"/>
+            <td th:text="${movie.Type}"/>
+            <td>
+                <img th:src="${movie.Poster}" height="100px"/>
+            </td>
+        </tr>
+    </table>
+</div>
+<div th:unless="${not #lists.isEmpty(movies)}">
+    <div class="card">
+        <div class="card-body">
+            No movies found!
+        </div>
+    </div>
+</div>
+</body>
+</html>
