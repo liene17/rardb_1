@@ -20,14 +20,14 @@ import java.util.List;
         @Value("${api.request}")
         private String requestUrl;
 
-        public ImdbMovieData getImdbMovie() {
+        public List<ImdbListData> getImdbMovie(String title) {
             try {
                 Path path = Paths.get("./api_key.txt");
                 List<String> fileData = Files.readAllLines(path);
 //                System.out.println("fileData = "   + fileData);
                 String listString = String.join("\n ", fileData);
 
-                URL url = new URL(requestUrl + "apikey=" + listString + "&t=iron");
+                URL url = new URL(requestUrl + "apikey=" + listString + "&s=" + title);
                 HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
                 urlConnection.setRequestMethod("GET");
                 urlConnection.setReadTimeout(3000);
@@ -48,13 +48,14 @@ import java.util.List;
                 bufferedReader.close();
 
                 Gson gson = new Gson();
-                ImdbMovieData imdbMovieData = gson.fromJson(jsonResponse, ImdbMovieData.class);
+                ImdbMovieList imdbMovieList = gson.fromJson(jsonResponse, ImdbMovieList.class);
 
-                return imdbMovieData;
+                return imdbMovieList.Search;
 
             } catch (Exception e) {
                 throw new RuntimeException(e);
             }
+
         }
     }
 

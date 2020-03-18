@@ -32,6 +32,11 @@
     <form th:action="@{/registration}" method="get">
     <button class="btn btn-outline-light" type="Submit">Create a new account</button>
     </form>
+
+    <form th:action="@{/login/search}" method="get">
+        <input type="text" name="title" id="title" th:value="${title}"/>
+        <input type="submit" value="Search"/>
+    </form>
 </div>
 </body>
 </html>

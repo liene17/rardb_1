@@ -1,21 +1,30 @@
 package lv.accenture.bootcamp.rardb.controller;
 
 import lv.accenture.bootcamp.rardb.model.User;
+import lv.accenture.bootcamp.rardb.network.ImdbAPIService;
+import lv.accenture.bootcamp.rardb.network.ImdbListData;
+import lv.accenture.bootcamp.rardb.network.ImdbMovieData;
 import lv.accenture.bootcamp.rardb.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @Controller
 public class LoginController {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private ImdbAPIService imdbAPIService;
 
     @GetMapping(value = {"/", "/login"})
     public ModelAndView login() {
@@ -54,4 +63,10 @@ public class LoginController {
         return modelAndView;
     }
 
+    @GetMapping("/login/search")
+    public String searchMovie(@RequestParam String title, Model model){
+        List<ImdbListData> movies = imdbAPIService.getImdbMovie(title);
+        model.addAttribute("movies", movies);
+        return "search-index";
+    }
 }
