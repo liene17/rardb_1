@@ -20,7 +20,7 @@ import java.util.List;
         @Value("${api.request}")
         private String requestUrl;
 
-        public ImdbAPIResponse getImdbMovie() {
+        public ImdbMovieData getImdbMovie() {
             try {
                 Path path = Paths.get("./api_key.txt");
                 List<String> fileData = Files.readAllLines(path);
@@ -48,9 +48,9 @@ import java.util.List;
                 bufferedReader.close();
 
                 Gson gson = new Gson();
-                ImdbAPIResponse imdbAPIResponse = gson.fromJson(jsonResponse, ImdbAPIResponse.class);
+                ImdbMovieData imdbMovieData = gson.fromJson(jsonResponse, ImdbMovieData.class);
 
-                return imdbAPIResponse;
+                return imdbMovieData;
 
             } catch (Exception e) {
                 throw new RuntimeException(e);
