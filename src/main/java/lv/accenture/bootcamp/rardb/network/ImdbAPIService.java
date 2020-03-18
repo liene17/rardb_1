@@ -24,7 +24,7 @@ import java.util.List;
             try {
                 Path path = Paths.get("./api_key.txt");
                 List<String> fileData = Files.readAllLines(path);
-//                System.out.println("fileData = " + fileData);
+//                System.out.println("fileData = "   + fileData);
                 String listString = String.join("\n ", fileData);
 
                 URL url = new URL(requestUrl + "apikey=" + listString + "&t=iron");
