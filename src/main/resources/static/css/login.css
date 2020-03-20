@@ -4,19 +4,17 @@
 }
 
 .form-signin {
-    position: absolute;
-    top: 8px;
-    right: 16px;
-    max-width: 520px;
+    align: right;
+    max-width: 420px;
     padding: 30px 38px 66px;
     margin: 0 auto;
     background-color: #eee;
-    border: 3px dotted rgba(0,0,0,0.1);
+    border: border-dark;
 }
 
 .form-signin-heading {
     text-align:left;
-    font-size: 30px;
+    font-size: 25px;
     margin-bottom: 15px;
 }
 

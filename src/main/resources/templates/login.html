@@ -1,21 +1,19 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org">
-
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>RARDB_1</title>
+    <title>Login</title>
     <link rel="stylesheet" type="text/css" th:href="@{/css/login.css}"/>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"></script>
 </head>
 
-<body style="background-color:grey;">
-<img th:src="@{/images/banner.png}" class="img-fluid" alt="Responsive image"/>
+<body style="background-color:white;">
+
+<img th:src="@{/images/header2.png}" class="img-fluid" alt="Responsive image"/>
+
 <div class="container">
     <form th:action="@{/login}" method="POST" class="form-signin">
         <h3 class="form-signin-heading" th:text="Welcome"></h3>
         <br/>
-
         <input type="text" id="user_name" name="user_name" placeholder="User Name"
                class="form-control"/> <br/>
         <input type="password" th:placeholder="Password"
@@ -27,10 +25,19 @@
 
         <button class="btn btn-outline-dark" name="Submit" value="Login" type="Submit"
                 th:text="Login"></button>
-    </form>
 
-    <form th:action="@{/registration}" method="get">
-    <button class="btn btn-outline-light" type="Submit">Create a new account</button>
+        <form th:action="@{/logout}" method="get">
+            <button class="btn btn-outline-dark" name="Submit" value="Logout" type="Submit"
+                    th:text="Logout"></button>
+        </form>
+
+        <form th:action="@{/registration}" method="get">
+            <button class="btn btn-outline-dark" type="Submit">Create a new account</button>
+        </form>
+        <form th:action="@{/search}" method="get">
+            <input type="text" name="title" id="title" placeholder="Start search" th:value="${title}"/>
+            <button class="btn btn-outline-dark" type="Submit">Search</button>
+        </form>
     </form>
 </div>
 </body>

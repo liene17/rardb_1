@@ -4,9 +4,9 @@ public class ImdbAPIResponse {
 
     private String status;
 
-    private ImdbMovieData results;
+    private ImdbListData results;
 
-    public ImdbMovieData getResults() {
+    public ImdbListData getResults() {
 
         return results;
     }

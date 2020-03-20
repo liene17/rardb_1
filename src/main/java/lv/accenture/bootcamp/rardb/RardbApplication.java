@@ -19,7 +19,7 @@ public class RardbApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 
-		System.out.println(imdbAPIService.getImdbMovie());
+		//System.out.println(imdbAPIService.getImdbMovie("iron"));
 
 	}
 }

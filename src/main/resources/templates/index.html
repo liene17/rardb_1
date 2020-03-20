@@ -1,10 +1,29 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Title1</title>
+    <title>RARDB_1</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/login.css}"/>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
 </head>
-<body>
 
+<body style="background-color:white;">
+
+<img th:src="@{/images/header2.png}" class="img-fluid" alt="Responsive image"/>
+
+<div>
+    <form th:action="@{/logout}" method="get">
+        <button class="btn btn-outline-dark" name="Submit" value="Logout" type="Submit"
+                th:text="Logout"></button>
+    </form>
+
+    <form th:action="@{/login}" method="get">
+    <button class="btn btn-outline-dark" name="Submit" value="Login" type="Submit"
+            th:text="Login"></button>
+    </form>
+
+    <form th:action="@{/registration}" method="get">
+        <button class="btn btn-outline-dark" type="Submit">Create a new account</button>
+    </form>
+
+</div>
 </body>
-</html>
