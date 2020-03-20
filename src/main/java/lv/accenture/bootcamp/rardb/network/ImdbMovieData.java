@@ -1,231 +1,231 @@
-//package lv.accenture.bootcamp.rardb.network;
+package lv.accenture.bootcamp.rardb.network;
 
-//import java.util.ArrayList;
+import java.util.ArrayList;
 
-//public class ImdbMovieData {
+public class ImdbMovieData {
 
-        //private String Title;
-        //private String Year;
-        //private String Rated;
-        //private String Released;
-        //private String Runtime;
-        //private String Genre;
-        //private String Director;
-        //private String Writer;
-        //private String Actors;
-        //private String Plot;
-        //private String Language;
-        //private String Country;
-        //private String Awards;
-        //private String Poster;
-        //ArrayList<Object> Ratings = new ArrayList<Object>();
-        //private String Metascore;
-       // private String imdbRating;
-        //private String imdbVotes;
-        //private String imdbID;
-        //private String Type;
-        //private String DVD;
-        //private String BoxOffice;
-        //private String Production;
-        //private String Website;
-        //private String Response;
+        private String Title;
+        private String Year;
+        private String Rated;
+        private String Released;
+        private String Runtime;
+        private String Genre;
+        private String Director;
+        private String Writer;
+        private String Actors;
+        private String Plot;
+        private String Language;
+        private String Country;
+        private String Awards;
+        private String Poster;
+        ArrayList<Object> Ratings = new ArrayList<Object>();
+        private String Metascore;
+        private String imdbRating;
+        private String imdbVotes;
+        private String imdbID;
+        private String Type;
+        private String DVD;
+        private String BoxOffice;
+        private String Production;
+        private String Website;
+        private String Response;
 
 
         // Getter Methods
 
-        //public String getTitle() {
-            //return Title;
-        //}
+        public String getTitle() {
+            return Title;
+        }
 
-        //public String getYear() {
-            //return Year;
-        //}
+        public String getYear() {
+            return Year;
+        }
 
-        //public String getRated() {
-           //return Rated;
-        //}
+        public String getRated() {
+            return Rated;
+        }
 
-        //public String getReleased() {
-            //return Released;
-        //}
+        public String getReleased() {
+            return Released;
+        }
 
-        //public String getRuntime() {
-            //return Runtime;
-        //}
+        public String getRuntime() {
+            return Runtime;
+        }
 
-        //public String getGenre() {
-            //return Genre;
-        //}
+        public String getGenre() {
+            return Genre;
+        }
 
-        //public String getDirector() {
-            //return Director;
-        //}
+        public String getDirector() {
+            return Director;
+        }
 
-        //public String getWriter() {
-            //return Writer;
-        //}
+        public String getWriter() {
+            return Writer;
+        }
 
-        //public String getActors() {
-            //return Actors;
-        //}
+        public String getActors() {
+            return Actors;
+        }
 
-        //public String getPlot() {
-            //return Plot;
-        //}
+        public String getPlot() {
+            return Plot;
+        }
 
-        //public String getLanguage() {
-            //return Language;
-        //}
+        public String getLanguage() {
+            return Language;
+        }
 
-       // public String getCountry() {
-            //return Country;
-        //}
+        public String getCountry() {
+            return Country;
+        }
 
-        //public String getAwards() {
-            //return Awards;
-        //}
+        public String getAwards() {
+            return Awards;
+        }
 
-        //public String getPoster() {
-            //return Poster;
-        //}
+        public String getPoster() {
+            return Poster;
+        }
 
-        //public String getMetascore() {
-            //return Metascore;
-        //}
+        public String getMetascore() {
+            return Metascore;
+        }
 
-        //public String getImdbRating() {
-            //return imdbRating;
-        //}
+        public String getImdbRating() {
+            return imdbRating;
+        }
 
-        //public String getImdbVotes() {
-            //return imdbVotes;
-        //}
+        public String getImdbVotes() {
+            return imdbVotes;
+        }
 
-        //public String getImdbID() {
-            //return imdbID;
-        //}
+        public String getImdbID() {
+            return imdbID;
+        }
 
-       // public String getType() {
-            //return Type;
-       // }
+        public String getType() {
+            return Type;
+        }
 
-        //public String getDVD() {
-        //    return DVD;
-        //}
+        public String getDVD() {
+            return DVD;
+        }
 
-        //public String getBoxOffice() {
-           // return BoxOffice;
-        //}
+        public String getBoxOffice() {
+            return BoxOffice;
+        }
 
-        //public String getProduction() {
-            //return Production;
-        //}
+        public String getProduction() {
+            return Production;
+        }
 
-       // public String getWebsite() {
-            //return Website;
-        //}
+        public String getWebsite() {
+            return Website;
+        }
 
-       // public String getResponse() {
-           // return Response;
-       // }
+        public String getResponse() {
+            return Response;
+        }
 
         // Setter Methods
 
-       // public void setTitle(String Title) {
-           // this.Title = Title;
-        //}
+        public void setTitle(String Title) {
+            this.Title = Title;
+        }
 
-       // public void setYear(String Year) {
-            //this.Year = Year;
-       // }
+        public void setYear(String Year) {
+            this.Year = Year;
+        }
 
-       // public void setRated(String Rated) {
-            //this.Rated = Rated;
-       // }
+        public void setRated(String Rated) {
+            this.Rated = Rated;
+        }
 
-       // public void setReleased(String Released) {
-            //this.Released = Released;
-       // }
+        public void setReleased(String Released) {
+            this.Released = Released;
+        }
 
-       // public void setRuntime(String Runtime) {
-            //this.Runtime = Runtime;
-       // }
+        public void setRuntime(String Runtime) {
+            this.Runtime = Runtime;
+        }
 
-       // public void setGenre(String Genre) {
-            //this.Genre = Genre;
-       // }
+        public void setGenre(String Genre) {
+            this.Genre = Genre;
+        }
 
-        //public void setDirector(String Director) {
-            //this.Director = Director;
-       // }
+        public void setDirector(String Director) {
+            this.Director = Director;
+        }
 
-       // public void setWriter(String Writer) {
-           // this.Writer = Writer;
-        //}
+        public void setWriter(String Writer) {
+            this.Writer = Writer;
+        }
 
-        //public void setActors(String Actors) {
-            //this.Actors = Actors;
-       // }
+        public void setActors(String Actors) {
+            this.Actors = Actors;
+        }
 
-        //public void setPlot(String Plot) {
-        //this.Plot = Plot;
-        //}
+        public void setPlot(String Plot) {
+            this.Plot = Plot;
+        }
 
-        //public void setLanguage(String Language) {
-            //this.Language = Language;
-       // }
+        public void setLanguage(String Language) {
+            this.Language = Language;
+        }
 
-       // public void setCountry(String Country) {
-           // this.Country = Country;
-       // }
+        public void setCountry(String Country) {
+            this.Country = Country;
+        }
 
-       // public void setAwards(String Awards) {
-           // this.Awards = Awards;
-        //}
+        public void setAwards(String Awards) {
+            this.Awards = Awards;
+        }
 
-       // public void setPoster(String Poster) {
-           //this.Poster = Poster;
-       // }
+        public void setPoster(String Poster) {
+            this.Poster = Poster;
+        }
 
-       // public void setMetascore(String Metascore) {
-           // this.Metascore = Metascore;
-        //}
+        public void setMetascore(String Metascore) {
+            this.Metascore = Metascore;
+        }
 
-       // public void setImdbRating(String imdbRating) {
-           // this.imdbRating = imdbRating;
-      //  }
+        public void setImdbRating(String imdbRating) {
+            this.imdbRating = imdbRating;
+        }
 
-       // public void setImdbVotes(String imdbVotes) {
-           // this.imdbVotes = imdbVotes;
-       // }
+        public void setImdbVotes(String imdbVotes) {
+            this.imdbVotes = imdbVotes;
+        }
 
-       // public void setImdbID(String imdbID) {
-           // this.imdbID = imdbID;
-        //}
+        public void setImdbID(String imdbID) {
+            this.imdbID = imdbID;
+        }
 
-        //public void setType(String Type) {
-       //     this.Type = Type;
-       // }
+        public void setType(String Type) {
+            this.Type = Type;
+        }
 
-       // public void setDVD(String DVD) {
-           // this.DVD = DVD;
-       // }
+        public void setDVD(String DVD) {
+            this.DVD = DVD;
+        }
 
-        //public void setBoxOffice(String BoxOffice) {
-           // this.BoxOffice = BoxOffice;
-       // }
+        public void setBoxOffice(String BoxOffice) {
+            this.BoxOffice = BoxOffice;
+        }
 
-       // public void setProduction(String Production) {
-          //  this.Production = Production;
-       // }
+        public void setProduction(String Production) {
+            this.Production = Production;
+        }
 
-       // public void setWebsite(String Website) {
-            //this.Website = Website;
-       // }
+        public void setWebsite(String Website) {
+            this.Website = Website;
+        }
 
-       // public void setResponse(String Response) {
-        //    this.Response = Response;
-        //}
+        public void setResponse(String Response) {
+            this.Response = Response;
+        }
 
-//}
+}
 

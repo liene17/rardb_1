@@ -39,6 +39,11 @@
             <button class="btn btn-outline-dark" type="Submit">Search</button>
         </form>
     </form>
+
+    <form th:action="@{/search}" method="get">
+        <input type="text" name="title" id="title" placeholder="Start search" th:value="${title}"/>
+        <button class="btn btn-outline-light" type="Submit">Search</button>
+    </form>
 </div>
 </body>
 </html>

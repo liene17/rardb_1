@@ -15,47 +15,46 @@ import java.nio.file.Paths;
 import java.util.List;
 
 @Component
-public class ImdbAPIService {
+    public class ImdbAPIService {
 
-    @Value("${api.request}")
-    private String requestUrl;
+        @Value("${api.request}")
+        private String requestUrl;
 
-    public List<ImdbListData> getImdbMovie(String title) {
-        try {
-            Path path = Paths.get("./api_key.txt");
-            List<String> fileData = Files.readAllLines(path);
-//                System.out.println("fileData = "   + fileData);
-            String listString = String.join("\n ", fileData);
+        public ImdbAPIResponse getImdbMovie() {
+            try {
+                Path path = Paths.get("./api_key.txt");
+                List<String> fileData = Files.readAllLines(path);
+//                System.out.println("fileData = " + fileData);
+                String listString = String.join("\n ", fileData);
 
-            URL url = new URL(requestUrl + "apikey=" + listString + "&s=" + title);
-            HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
-            urlConnection.setRequestMethod("GET");
-            urlConnection.setReadTimeout(3000);
-            urlConnection.connect();
+                URL url = new URL(requestUrl + "apikey=" + listString + "&t=iron");
+                HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
+                urlConnection.setRequestMethod("GET");
+                urlConnection.setReadTimeout(3000);
+                urlConnection.connect();
 
-            InputStream inputStream = urlConnection.getInputStream();
-            InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
-            BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+                InputStream inputStream = urlConnection.getInputStream();
+                InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
+                BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
 
-            StringBuilder sb = new StringBuilder();
-            String line = null;
-            while ((line = bufferedReader.readLine()) != null) {
-                sb.append(line + "\n");
+                StringBuilder sb = new StringBuilder();
+                String line = null;
+                while ((line = bufferedReader.readLine()) != null) {
+                    sb.append(line + "\n");
+                }
+
+                String jsonResponse = sb.toString();
+
+                bufferedReader.close();
+
+                Gson gson = new Gson();
+                ImdbAPIResponse imdbAPIResponse = gson.fromJson(jsonResponse, ImdbAPIResponse.class);
+
+                return imdbAPIResponse;
+
+            } catch (Exception e) {
+                throw new RuntimeException(e);
             }
-
-            String jsonResponse = sb.toString();
-
-            bufferedReader.close();
-
-            Gson gson = new Gson();
-            ImdbMovieList imdbMovieList = gson.fromJson(jsonResponse, ImdbMovieList.class);
-
-            return imdbMovieList.Search;
-
-        } catch (Exception e) {
-            throw new RuntimeException(e);
         }
-
     }
-}
 
