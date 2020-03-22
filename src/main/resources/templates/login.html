@@ -30,23 +30,24 @@
                     th:text="Login"></button>
             <br>
             <br>
-            <h4>Don`t have an account? </h4>
-            <div th:action="@{/registration}" method="get">
-                <button class="btn btn-outline-dark" type="Submit">Create new account</button>
-            </div>
         </form>
     </div>
 
     <div sec:authorize="isAuthenticated()">
         <div class="welcome">Hello, <span sec:authentication="name"> </span>
         </div>
-        <br>
         <form th:action="@{/logout}" method="get">
             <button class="btn btn-outline-dark" name="Submit" value="Logout" type="Submit"
                     th:text="Logout"></button>
         </form>
     </div>
-
+    <br>
+    <br>
+    <h4>Don`t have an account? </h4>
+    <form th:action="@{/registration}" method="get">
+        <button class="btn btn-outline-dark" type="Submit">Create new account</button>
+    </form>
+    <br>
     <form th:action="@{/search}" method="get">
         <input type="text" name="title" id="title" placeholder="Start search" th:value="${title}"/>
         <button class="btn btn-outline-dark" type="Submit">Search</button>

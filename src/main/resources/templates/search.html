@@ -10,17 +10,17 @@
 
 <div th:if="${not #lists.isEmpty(movies)}">
     <table class="table table-bordered">
-        <tr class="bg-warning">
-            <th>Poster</th>
-            <th>Title</th>
-            <th>Year</th>
-            <th>imdbID</th>
-            <th>Type</th>
-            <th>Review info</th>
+        <tr class="table-secondary">
+            <th scope="col">Poster</th>
+            <th scope="col">Title</th>
+            <th scope="col">Year</th>
+            <th scope="col">imdbID</th>
+            <th scope="col">Type</th>
+            <th scope="col">Review info</th>
         </tr>
-        <tr th:each="movie: ${movies}" class="table-warning">
+        <tr th:each="movie: ${movies}" class="table-secondary">
             <td>
-                <img th:src="${movie.Poster}" height="100px"/>
+                <img th:src="${movie.Poster}" height="200px"/>
             </td>
             <td>
                 <a th:href="@{/search/movie/{id}(id=${movie.imdbID})}" th:text="${movie.Title}">
@@ -32,11 +32,11 @@
             <td th:text="${movie.Type}"/>
 
             <td>
-                <a th:href="@{/READREVIEWLINK}" class="btn btn-warning">
+                <a th:href="@{/READREVIEWLINK}" class="btn btn-outline-dark">
                     <span>READ REVIEWS</span>
                 </a>
                 <br/><br/>
-                <a th:href="@{/review/add/{id}(id=${movie.imdbID})}" sec:authorize="isAuthenticated()" class="btn btn-warning">
+                <a th:href="@{/review/add/{id}(id=${movie.imdbID})}" sec:authorize="isAuthenticated()" class="btn btn-outline-dark">
                     <span>WRITE REVIEW</span>
                 </a>
             </td>
