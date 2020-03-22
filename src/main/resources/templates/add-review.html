@@ -1,10 +1,33 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Add review</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/index.css}"/>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
 </head>
 <body>
+<header th:insert="header.html :: header"></header>
 
+<div>
+    <table class="table table-bordered">
+        <tr class="bg-warning">
+            <th>Movie title</th>
+            <td th:text="${thisMovie.Title}"/>
+        </tr>
+
+        <tr class="bg-warning">
+            <th>Username:</th>
+            <td><span sec:authentication="name"> </span></td>
+        </tr>
+
+        <tr class="bg-warning">
+            <th>Your review:</th>
+            <td>
+                <-- USER INPUT : REVIEW TEXT-->
+            </td>
+        </tr>
+    </table>
+</div>
 </body>
 </html>

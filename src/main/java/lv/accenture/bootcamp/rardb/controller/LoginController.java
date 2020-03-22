@@ -3,13 +3,11 @@ package lv.accenture.bootcamp.rardb.controller;
 import lv.accenture.bootcamp.rardb.model.User;
 import lv.accenture.bootcamp.rardb.network.ImdbAPIService;
 import lv.accenture.bootcamp.rardb.network.ImdbListData;
-import lv.accenture.bootcamp.rardb.network.ImdbMovieData;
 import lv.accenture.bootcamp.rardb.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
@@ -70,7 +68,6 @@ public class LoginController {
         modelAndView.addObject("movies", movies);
         modelAndView.setViewName("search");
         return modelAndView;
-
     }
 
 
