@@ -1,4 +1,3 @@
-/*
 package lv.accenture.bootcamp.rardb.network;
 
 import java.util.ArrayList;
@@ -229,5 +228,3 @@ public class ImdbMovieData {
         }
 
 }
-
-*/

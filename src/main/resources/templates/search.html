@@ -19,7 +19,7 @@
 
 <div sec:authorize="!isAuthenticated()">
     <span class="welcome">Want to log in?</span>
-    <button class="btn btn-outline-dark"><a th:href="@{/login}"> <span> <b>GO TO LOGIN</b></span></a></button>
+    <button class="btn btn-outline-dark"><a th:href="@{/login}"> <span class="welcome"> <b>GO TO LOGIN</b></span></a></button>
 </div>
 
 <form th:action="@{/search}" method="get">
@@ -44,7 +44,11 @@
             <td>
                 <img th:src="${movie.Poster}" height="100px"/>
             </td>
-            <td th:text="${movie.Title}"/>
+            <td>
+                <a th:href="@{/search/movie/{id}(id=${movie.imdbID})}" th:text="${movie.Title}">
+                </a>
+
+            </td>
             <td th:text="${movie.Year}"/>
             <td th:text="${movie.imdbID}"/>
             <td th:text="${movie.Type}"/>

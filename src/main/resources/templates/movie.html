@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Movie</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/index.css}"/>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+</head>
+<body>
+
+<div sec:authorize="isAuthenticated()">
+    <div class="welcome">Hello, <span sec:authentication="name"> </span>
+    </div>
+    <br>
+    <form th:action="@{/logout}" method="get">
+        <button class="btn btn-outline-dark" name="Submit" value="Logout" type="Submit"
+                th:text="Logout"></button>
+    </form>
+</div>
+
+<div sec:authorize="!isAuthenticated()">
+    <span class="welcome">Want to log in?</span>
+    <button class="btn btn-outline-dark"><a th:href="@{/login}"> <span class="welcome"> <b>GO TO LOGIN</b></span></a>
+    </button>
+</div>
+
+<form th:action="@{/search}" method="get">
+    <input type="text" name="title" id="title" placeholder="Start another search" th:value="${title}"/>
+
+    <button class="btn btn-outline-dark" type="Submit">Search</button>
+    <a th:href="@{/login}" class="btn btn-outline-dark">
+        <span> <b>HOME</b></span>
+    </a>
+</form>
+<div th:if="${oneMovie != null}">
+    <table class="table table-bordered">
+        <tr class="bg-warning">
+            <th>Title</th>
+            <td th:text="${oneMovie.Title}"/>
+        </tr>
+
+        <tr class="bg-warning">
+            <th>Poster</th>
+
+            <td>
+                <img th:src="${oneMovie.Poster}" height="100px"/>
+            </td>
+        </tr>
+        <tr class="bg-warning">
+            <th>Year</th>
+            <td th:text="${oneMovie.Year}"/>
+        </tr>
+        <tr class="bg-warning">
+            <th>Rated</th>
+            <td th:text="${oneMovie.Rated}"/>
+        </tr>
+        <tr class="bg-warning">
+            <th>Released</th>
+            <td th:text="${oneMovie.Released}"/>
+        </tr>
+        <tr class="bg-warning">
+            <th>Runtime</th>
+            <td th:text="${oneMovie.Runtime}"/>
+        </tr>
+        <tr class="bg-warning">
+            <th>Genre</th>
+            <td th:text="${oneMovie.Genre}"/>
+        </tr>
+        <tr class="bg-warning">
+            <th>Director</th>
+            <td th:text="${oneMovie.Director}"/>
+        </tr>
+        <tr class="bg-warning">
+            <th>Writer</th>
+            <td th:text="${oneMovie.Writer}"/>
+        </tr>
+        <tr class="bg-warning">
+            <th>Actors</th>
+            <td th:text="${oneMovie.Actors}"/>
+        </tr>
+
+        <tr class="bg-warning">
+            <th>Plot</th>
+            <td th:text="${oneMovie.Plot}"/>
+        </tr>
+        <tr class="bg-warning">
+            <th>Language</th>
+            <td th:text="${oneMovie.Language}"/>
+        </tr>
+        <tr class="bg-warning">
+            <th>Country</th>
+            <td th:text="${oneMovie.Country}"/>
+        </tr>
+        <tr class="bg-warning">
+            <th>Awards</th>
+            <td th:text="${oneMovie.Awards}"/>
+        </tr>
+        <tr class="bg-warning">
+            <th>imdbRating</th>
+            <td th:text="${oneMovie.imdbRating}"/>
+        </tr>
+        <tr class="bg-warning">
+            <th>Type</th>
+            <td th:text="${oneMovie.Type}"/>
+        </tr>
+    </table>
+</div>
+
+<div th:unless="${oneMovie != null}">
+    <div class="card">-->
+        <div class="card-body">
+            No movie found!
+        </div>
+    </div>
+</div>
+</body>
+</html>
