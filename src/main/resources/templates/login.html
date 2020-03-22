@@ -1,8 +1,9 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <title>Login</title>
     <link rel="stylesheet" type="text/css" th:href="@{/css/login.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/welcome.css}"/>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
 </head>
 
@@ -11,35 +12,44 @@
 <img th:src="@{/images/header2.png}" class="img-fluid" alt="Responsive image"/>
 
 <div class="container">
-    <form th:action="@{/login}" method="POST" class="form-signin">
-        <h3 class="form-signin-heading" th:text="Welcome"></h3>
-        <br/>
+    <div sec:authorize="!isAuthenticated()">
+        <form th:action="@{/login}" method="POST" class="form-signin">
+            <h3 class="form-signin-heading" th:text="Welcome"></h3>
+            <br/>
 
-        <input type="text" id="user_name" name="user_name" placeholder="User Name"
-               class="form-control"/> <br/>
-        <input type="password" th:placeholder="Password"
-               id="password" name="password" class="form-control"/> <br/>
+            <input type="text" id="user_name" name="user_name" placeholder="User Name"
+                   class="form-control"/> <br/>
+            <input type="password" th:placeholder="Password"
+                   id="password" name="password" class="form-control"/> <br/>
 
-        <div align="left" th:if="${param.error}">
-            <p style="font-size: 10; color: red;">Invalid User Name or Password</p>
+            <div align="left" th:if="${param.error}">
+                <p style="font-size: 10; color: red;">Invalid User Name or Password</p>
+            </div>
+
+            <button class="btn btn-outline-dark" name="Submit" value="Login" type="Submit"
+                    th:text="Login"></button>
+            <br>
+            <br>
+            <h4>Don`t have an account? </h4>
+            <div th:action="@{/registration}" method="get">
+                <button class="btn btn-outline-dark" type="Submit">Create new account</button>
+            </div>
+        </form>
+    </div>
+
+    <div sec:authorize="isAuthenticated()">
+        <div class="welcome">Hello, <span sec:authentication="name"> </span>
         </div>
-
-        <button class="btn btn-outline-dark" name="Submit" value="Login" type="Submit"
-                th:text="Login"></button>
-
+        <br>
         <form th:action="@{/logout}" method="get">
             <button class="btn btn-outline-dark" name="Submit" value="Logout" type="Submit"
                     th:text="Logout"></button>
         </form>
+    </div>
 
-        <form th:action="@{/registration}" method="get">
-            <button class="btn btn-outline-dark" type="Submit">Create a new account</button>
-        </form>
-
-        <form th:action="@{/search}" method="get">
-            <input type="text" name="title" id="title" placeholder="Start search" th:value="${title}"/>
-            <button class="btn btn-outline-dark" type="Submit">Search</button>
-        </form>
+    <form th:action="@{/search}" method="get">
+        <input type="text" name="title" id="title" placeholder="Start search" th:value="${title}"/>
+        <button class="btn btn-outline-dark" type="Submit">Search</button>
     </form>
 </div>
 </body>
