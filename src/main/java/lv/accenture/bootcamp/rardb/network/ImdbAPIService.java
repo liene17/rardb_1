@@ -27,6 +27,8 @@ public class ImdbAPIService {
 //                System.out.println("fileData = "   + fileData);
             String listString = String.join("\n ", fileData);
 
+            title= title.replace(' ', '+');
+
             URL url = new URL(requestUrl + "apikey=" + listString + "&s=" + title);
             HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
             urlConnection.setRequestMethod("GET");
