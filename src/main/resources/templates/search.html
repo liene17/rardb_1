@@ -19,7 +19,8 @@
 
 <div sec:authorize="!isAuthenticated()">
     <span class="welcome">Want to log in?</span>
-    <button class="btn btn-outline-dark"><a th:href="@{/login}"> <span class="welcome"> <b>GO TO LOGIN</b></span></a></button>
+    <button class="btn btn-outline-dark"><a th:href="@{/login}"> <span class="welcome"> <b>GO TO LOGIN</b></span></a>
+    </button>
 </div>
 
 <form th:action="@{/search}" method="get">

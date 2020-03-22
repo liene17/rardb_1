@@ -73,13 +73,5 @@ public class LoginController {
 
     }
 
-    @GetMapping(value = "/search/movie/{id}")
-    public ModelAndView oneMovieInfo(@PathVariable String id) {
-        ModelAndView modelAndView = new ModelAndView();
-        ImdbMovieData oneMovie= imdbAPIService.getOneMovieOnly(id);
-        modelAndView.addObject("oneMovie", oneMovie);
-        modelAndView.setViewName("movie");
-        return modelAndView;
 
-    }
 }
