@@ -4,7 +4,6 @@
     <title>Login</title>
     <link rel="stylesheet" type="text/css" th:href="@{/css/login.css}"/>
     <link rel="stylesheet" type="text/css" th:href="@{/css/welcome.css}"/>
-    <link rel="stylesheet" type="text/css" th:href="@{/css/search-bar.css}"/>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
 </head>
 
@@ -17,7 +16,6 @@
         <form th:action="@{/login}" method="POST" class="form-signin">
             <h3 class="form-signin-heading" th:text="Welcome"></h3>
             <br/>
-
             <input type="text" id="user_name" name="user_name" placeholder="User Name"
                    class="form-control"/> <br/>
             <input type="password" th:placeholder="Password"
@@ -26,15 +24,15 @@
             <div align="left" th:if="${param.error}">
                 <p style="font-size: 10; color: red;">Invalid User Name or Password</p>
             </div>
-
             <button class="btn btn-outline-dark" name="Submit" value="Login" type="Submit"
                     th:text="Login"></button>
             <br>
             <br>
-            <h4 class="form-signin-heading"> Don`t have an account?</h4>
-            <form th:action="@{/registration}" method="get">
-                <button class="btn btn-outline-dark" type="Submit">Create new account</button>
-            </form>
+        </form>
+
+        <h4>Don`t have an account? </h4>
+        <form th:action="@{/registration}" method="get">
+            <button class="btn btn-outline-dark" type="Submit">Create new account</button>
         </form>
     </div>
 
@@ -47,10 +45,13 @@
         </form>
     </div>
     <br>
-    <form th:action="@{/search}" method="get" >
-        <input type="text" name="title" id="title" placeholder="Start search" th:value="${title}" class="search-bar"/>
+    <br>
+    <form th:action="@{/search}" method="get">
+        <input type="text" name="title" id="title" style="width: 600px; height: 35px" placeholder="Start search" th:value="${title}"/>
         <button class="btn btn-outline-dark" type="Submit">Search</button>
     </form>
+
+
 </div>
 </body>
 </html>
