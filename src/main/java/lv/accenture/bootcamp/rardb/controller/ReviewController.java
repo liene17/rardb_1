@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
+import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 public class ReviewController {
@@ -49,5 +51,14 @@ public class ReviewController {
 
         }
         return modelAndView;
+
     }
+
+
+
+//    @PostMapping (value = "/review/add-review")
+//    public List generateReview(){
+//    List<Review> generatedReviews = new ArrayList<>();
+//    return generatedReviews;
+//    }
 }
