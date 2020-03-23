@@ -9,6 +9,12 @@
 <body>
 <header th:insert="header.html :: header"></header>
 
+<div class="text-center">
+    <br/><br/>
+<img th:src="${thisMovie.Poster}" height="400px" class="rounded"/>
+    <br/><br/>
+</div>
+
 <div>
     <table class="table table-bordered">
         <tr class="table-secondary">
@@ -23,11 +29,37 @@
 
         <tr class="table-secondary">
             <th>Your review:</th>
+
             <td>
-                <-- USER INPUT : REVIEW TEXT-->
-            </td>
-        </tr>
-    </table>
-</div>
-</body>
-</html>
+                <form action="#"
+                    th:action="@{/add-review}"
+                      th:object="${review}" method="post">
+                <div class="form-group">
+                     <label for="review"></label>
+                    <textarea class="form-control" id="review" rows="3"></textarea>
+                    <small id="reviewHelpBlock" class="form-text text-muted">
+                        Your review must be 30 to 2500 characters long
+                    </small>
+                  <!--  <p>
+                        <span>characters remaining: <span id="rem_post" title="2500"></span></span>
+                    </p> -->
+                </div>
+                </form>
+
+                <!--     <div>
+                         <a th:href="@{/review/add}" class="btn btn-outline-primary">Add your review!</a>
+                     </div> -->
+                     <div class="form-group col-md-8">
+                         <form>
+                         <input type="submit"  class="btn btn-primary" value="Add your review">
+                         <input type="button" value="Generate review" onclick="alert('Please write your own review!')">
+                         </form>
+                         <!--      <a class="btn btn-outline-primary">Generate</a>  -->
+
+                           </div>
+                       </td>
+                   </tr>
+               </table>
+           </div>
+           </body>
+           </html>
