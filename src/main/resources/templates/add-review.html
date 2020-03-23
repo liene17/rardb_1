@@ -39,8 +39,10 @@
                       th:object="${review}" method="post">
                     <div class="form-group">
                         <input type="hidden" id="imdbID" name="imdbID" th:value="${thisMovie.imdbID}">
+                        <input type="hidden" id="userName" name="userName" th:value="${review.userName}">
+
                         <label for="review"></label>
-                        <textarea class="form-control" id="review" rows="3" th:field="*{review}"></textarea>
+                        <textarea class="form-control" id="review" rows="3" th:field="*{reviewText}"></textarea>
                         <small id="reviewHelpBlock" class="form-text text-muted">
                             Your review must be 30 to 2500 characters long
                         </small>

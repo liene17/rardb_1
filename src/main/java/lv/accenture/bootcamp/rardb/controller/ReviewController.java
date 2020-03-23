@@ -43,6 +43,7 @@ public class ReviewController {
 
     @PostMapping(value = "/addreview")
     public ModelAndView addReview(@Valid Review reviewToAdd, BindingResult bindingResult) {
+        System.out.println(reviewToAdd.getReviewText());
         ModelAndView modelAndView = new ModelAndView();
         if (bindingResult.hasErrors()) {
             modelAndView.setViewName("add-review");

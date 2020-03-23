@@ -16,28 +16,28 @@ public class Review {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "Review_id")
+    @Column(name = "review_id")
     private Integer id;
 
     @Column(name = "imdbid")
     private String imdbID;
 
-    @Column(name = "UserName")
+    @Column(name = "user_name")
     private String userName;
 
 
-    @Column(name = "Review")
+    @Column(name = "review_text")
     @Size(min = 30, max = 2500)
-    private String review;
+    private String reviewText;
 
-    @Column(name = "Date")
+    @Column(name = "date")
     private String date;
 
-    public Review(Integer id, String imdbID, String userName, String review) {
+    public Review(Integer id, String imdbID, String userName, String reviewText) {
         this.id = id;
         this.imdbID = imdbID;
         this.userName = userName;
-        this.review = review;
+        this.reviewText = reviewText;
     }
 
     public Review(String userName) {
@@ -47,9 +47,6 @@ public class Review {
     public Review() {
 
     }
-
-//    public Review() {
-//    }
 
     public Integer getId() {
         return id;
@@ -71,12 +68,12 @@ public class Review {
         this.userName = userName;
     }
 
-    public String getReview() {
-        return review;
+    public String getReviewText() {
+        return reviewText;
     }
 
-    public void setReview(String review) {
-        this.review = review;
+    public void setReviewText(String reviewText) {
+        this.reviewText = reviewText;
     }
 
     public String getDate() {
