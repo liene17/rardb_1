@@ -4,6 +4,7 @@
     <title>Login</title>
     <link rel="stylesheet" type="text/css" th:href="@{/css/login.css}"/>
     <link rel="stylesheet" type="text/css" th:href="@{/css/welcome.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/search-bar.css}"/>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
 </head>
 
@@ -30,6 +31,10 @@
                     th:text="Login"></button>
             <br>
             <br>
+            <h4 class="form-signin-heading"> Don`t have an account?</h4>
+            <form th:action="@{/registration}" method="get">
+                <button class="btn btn-outline-dark" type="Submit">Create new account</button>
+            </form>
         </form>
     </div>
 
@@ -42,14 +47,8 @@
         </form>
     </div>
     <br>
-    <br>
-    <h4>Don`t have an account? </h4>
-    <form th:action="@{/registration}" method="get">
-        <button class="btn btn-outline-dark" type="Submit">Create new account</button>
-    </form>
-    <br>
-    <form th:action="@{/search}" method="get">
-        <input type="text" name="title" id="title" placeholder="Start search" th:value="${title}"/>
+    <form th:action="@{/search}" method="get" >
+        <input type="text" name="title" id="title" placeholder="Start search" th:value="${title}" class="search-bar"/>
         <button class="btn btn-outline-dark" type="Submit">Search</button>
     </form>
 </div>

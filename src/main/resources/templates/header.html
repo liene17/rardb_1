@@ -1,6 +1,6 @@
 <div xmlns:sec="http://www.w3.org/1999/xhtml" xmlns:th="http://www.w3.org/1999/xhtml" th:fragment="header">
     <div sec:authorize="isAuthenticated()">
-        <div class="welcome">Hello, <span sec:authentication="name"> </span>
+        <div class="welcome"><br>Hello, <span sec:authentication="name"> </span>
         </div>
         <form th:action="@{/logout}" method="get">
             <button class="btn btn-outline-dark" name="Submit" value="Logout" type="Submit"
