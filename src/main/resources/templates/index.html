@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml"
+      xmlns:left="http://www.w3.org/1999/xhtml" xmlns:right="http://www.w3.org/1999/xhtml">
 <head>
     <title>Home page</title>
     <link rel="stylesheet" type="text/css" th:href="@{/css/login.css}"/>
@@ -19,16 +20,15 @@
 </form>
 
 <div sec:authorize="!isAuthenticated()" align="right">
+    <h4>Don`t have an account?</h4>
+    <form th:action="@{/registration}" method="get">
+        <button class="btn btn-outline-dark" type="Submit">Create New Account</button>
+    </form>
+    <br>
     <a href="/login">
         <button class="btn btn-outline-dark" name="Submit" value="Login" type="Submit"
                 th:text="Login"></button>
     </a>
-    <br>
-    <br>
-    <h4>Don`t have an account? </h4>
-    <form th:action="@{/registration}" method="get">
-        <button class="btn btn-outline-dark" type="Submit">Create new account</button>
-    </form>
 </div>
 
 <div sec:authorize="isAuthenticated()">

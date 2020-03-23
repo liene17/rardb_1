@@ -18,8 +18,8 @@
                   th:object="${user}" method="post" class="form-horizontal"
                   role="form">
 
-                <div class="form-group">
-                    <div class="col-sm-9">
+                <div class="form-group" >
+                    <div class="col-sm-9" >
                         <h2>Registration Form</h2>
                         <br>
                         <label th:if="${#fields.hasErrors('name')}" th:errors="*{name}"
@@ -64,12 +64,10 @@
 
                 <div class="form-group">
                     <div class="col-sm-9">
+                        <h2><span class="text-success" th:utext="${successMessage}" ></span></h2>
                         <button type="submit" class="btn btn-dark btn-block">Register User</button>
                     </div>
                 </div>
-
-                <h2><span class="text-success" th:utext="${successMessage}"></span></h2>
-
             </form>
             <div class="col-sm-9">
                 <form th:action="@{/}" method="get">

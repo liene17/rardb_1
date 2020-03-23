@@ -9,8 +9,9 @@
 </head>
 <body>
 <img th:src="@{/images/header2.png}" class="img-fluid" alt="Responsive image"/>
+<br>
 <header th:insert="header.html :: header"> </header>
-
+<br>
 <div th:if="${not #lists.isEmpty(movies)}">
     <table class="table table-bordered">
         <tr class="table-secondary">
