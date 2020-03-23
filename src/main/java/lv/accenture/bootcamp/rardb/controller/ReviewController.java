@@ -13,9 +13,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
-import java.util.ArrayList;
-import java.util.List;
+import java.security.Principal;
 
 @Controller
 public class ReviewController {
@@ -30,16 +30,18 @@ public class ReviewController {
     private ImdbAPIService imdbAPIService;
 
     @GetMapping(value = "/review/add/{id}")
-    public ModelAndView reviewAdd(@PathVariable String id) {
+    public ModelAndView getReviewView(@PathVariable String id, HttpServletRequest request) {
         ModelAndView modelAndView = new ModelAndView();
         ImdbMovieData thisMovie = imdbAPIService.getOneMovieOnly(id);
-        modelAndView.addObject("review", new Review());
+        Principal principal = request.getUserPrincipal();
+        String user = principal.getName();
+        modelAndView.addObject("review", new Review(user));
         modelAndView.addObject("thisMovie", thisMovie);
         modelAndView.setViewName("add-review");
         return modelAndView;
     }
 
-    @PostMapping(value = "/review/add-review/{id}")
+    @PostMapping(value = "/addreview")
     public ModelAndView addReview(@Valid Review reviewToAdd, BindingResult bindingResult) {
         ModelAndView modelAndView = new ModelAndView();
         if (bindingResult.hasErrors()) {
@@ -47,11 +49,9 @@ public class ReviewController {
         } else {
             reviewService.saveReview(reviewToAdd);
             modelAndView.addObject("successMessage", "Review has been added successfully");
-            modelAndView.setViewName("redirect:movie/"+reviewToAdd.getImdbID());
-
+            modelAndView.setViewName("redirect:movie/"+ reviewToAdd.getImdbID());
         }
         return modelAndView;
-
     }
 
 

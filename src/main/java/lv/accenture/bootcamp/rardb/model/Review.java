@@ -19,7 +19,7 @@ public class Review {
     @Column(name = "Review_id")
     private Integer id;
 
-    @Column(name = "ImdbID")
+    @Column(name = "imdbid")
     private String imdbID;
 
     @Column(name = "UserName")
@@ -40,6 +40,10 @@ public class Review {
         this.review = review;
     }
 
+    public Review(String userName) {
+        this.userName = userName;
+
+    }
     public Review() {
 
     }
