@@ -24,7 +24,7 @@ public class LoginController {
     @Autowired
     private ImdbAPIService imdbAPIService;
 
-    @GetMapping(value = {"/", "/login"})
+    @GetMapping(value = "/login")
     public ModelAndView login() {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("login");
