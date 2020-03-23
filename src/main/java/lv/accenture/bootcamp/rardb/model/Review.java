@@ -5,6 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 
 import javax.persistence.*;
+import javax.validation.constraints.Size;
 
 @Data
 @Builder
@@ -26,6 +27,7 @@ public class Review {
 
 
     @Column(name = "Review")
+    @Size(min = 30, max = 2500)
     private String review;
 
     @Column(name = "Date")
