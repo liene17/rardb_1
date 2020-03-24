@@ -1,28 +1,27 @@
 <div xmlns:sec="http://www.w3.org/1999/xhtml" xmlns:th="http://www.w3.org/1999/xhtml" th:fragment="header">
-    <br>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/index.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/welcome.css}"/>
     <div sec:authorize="isAuthenticated()">
         <div class="welcome"><br>Hello, <span sec:authentication="name"> </span>
         </div>
-        <form th:action="@{/logout}" method="get">
+        <form th:action="@{/logout}" method="get" class="index2">
             <button class="btn btn-outline-dark" name="Submit" value="Logout" type="Submit"
                     th:text="Logout"></button>
         </form>
     </div>
-
+    <br>
     <div sec:authorize="!isAuthenticated()">
         <span class="welcome">Want to log in?</span>
         <button class="btn btn-outline-dark"><a th:href="@{/login}">
-            <span class="welcome" style="color:black;"> <b>Go To Login</b></span></a>
+            <span class="welcome" style="color:black; text-align: center">Go To Login</span></a>
         </button>
-    </div>
-    <br>
-    <form th:action="@{/search}" method="get">
-        <input type="text" name="title" id="title" style="width: 600px; height: 35px"
-               placeholder="Start another search" th:value="${title}"/>
-
-        <button class="btn btn-outline-dark" type="Submit">Search</button>
         <a th:href="@{/}" class="btn btn-outline-dark">
-            <span> <b>Home</b></span>
+            <span><b>Home</b></span>
         </a>
+    </div>
+    <form th:action="@{/search}" method="get" class="index2">
+        <input type="text" name="title" id="title" style="width: 600px; height: 40px"
+               placeholder="Start another search" th:value="${title}"/>
+        <button class="btn btn-outline-dark" type="Submit">Search</button>
     </form>
 </div>

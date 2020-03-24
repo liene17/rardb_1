@@ -4,6 +4,8 @@
 <head>
     <title>Home page</title>
     <link rel="stylesheet" type="text/css" th:href="@{/css/login.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/index.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/welcome.css}"/>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
 </head>
 
@@ -13,12 +15,12 @@
 <br>
 <br>
 <form th:action="@{/search}" method="get" align="center">
-    <input type="text" name="title" id="title" style="width: 600px; height: 35px"
+    <input type="text" name="title" id="title" style="width: 600px; height: 40px"
            placeholder="Start search" th:value="${title}"/>
     <button class="btn btn-outline-dark" type="Submit">Search</button>
 </form>
 
-<div sec:authorize="!isAuthenticated()" align="right">
+<div sec:authorize="!isAuthenticated()" align="right" class="index">
     <h4>Don`t have an account?</h4>
     <form th:action="@{/registration}" method="get">
         <button class="btn btn-outline-dark" type="Submit">Create New Account</button>
@@ -33,8 +35,7 @@
 <div sec:authorize="isAuthenticated()">
     <div class="welcome">Hello, <span sec:authentication="name"></span>
     </div>
-
-    <form th:action="@{/logout}" method="get">
+    <form th:action="@{/logout}" method="get" class="index2">
         <button class="btn btn-outline-dark" name="Submit" value="Logout" type="Submit"
                 th:text="Logout"></button>
     </form>

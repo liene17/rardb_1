@@ -1,5 +1,6 @@
 package lv.accenture.bootcamp.rardb.model;
 
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -27,7 +28,7 @@ public class Review {
 
 
     @Column(name = "review_text")
-    @Size(min = 1, max = 2500)
+    @Size(min = 30, max = 2500)
     private String reviewText;
 
     @Column(name = "date")
@@ -80,5 +81,4 @@ public class Review {
         return date;
     }
 }
-
 
