@@ -1,5 +1,6 @@
 package lv.accenture.bootcamp.rardb.controller;
 
+import lv.accenture.bootcamp.rardb.model.Rating;
 import lv.accenture.bootcamp.rardb.model.Review;
 import lv.accenture.bootcamp.rardb.network.ImdbAPIService;
 import lv.accenture.bootcamp.rardb.network.ImdbMovieData;
@@ -28,6 +29,7 @@ public class MovieController {
         List<Review> reviewsForThisMovie = reviewService.findByImdbID(id);
         modelAndView.addObject("oneMovie", oneMovie);
         modelAndView.addObject("reviewsForThisMovie", reviewsForThisMovie);
+        modelAndView.addObject("rating", new Rating());
         modelAndView.setViewName("movie");
         return modelAndView;
     }

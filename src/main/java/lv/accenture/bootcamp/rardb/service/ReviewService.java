@@ -21,6 +21,8 @@ public class ReviewService {
         return reviewRepository.findByImdbID(id);
     }
 
+    public Review findByReviewID(Integer reviewId) { return reviewRepository.findByReviewId(reviewId);}
+
     public Review saveReview(Review review){
         return reviewRepository.save(review);
     }

@@ -1,4 +1,3 @@
-
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
@@ -11,11 +10,36 @@
 <img th:src="@{/images/header2.png}" class="img-fluid" alt="Responsive image"/>
 <header th:insert="header.html :: header"></header>
 
-<div class="text-center">
-    <br/><br/>
-    <img th:src="${thisMovie.Poster}" height="400px" class="rounded"/>
-    <br/><br/>
-</div>
+<br>
+<div th:if="${oneReview != null}">
+    <table class="table table-bordered">
+        <tr class="table-secondary">
+            <th>MOVIE</th>
+            <th>POSTER</th>
+            <th>USER</th>
+            <th>DATE AND TIME</th>
+            <th>RATING</th>
 
+        </tr>
+        <tr class="table-secondary">
+            <td th:text="${oneMovie.Title}"/>
+            <td>
+                <img class="poster-position" th:src="${oneMovie.Poster}" height="200px"/>
+            </td>
+            <td>
+                <span th:text="${oneReview.userName}"></span>
+            </td>
+            <td><span th:text="${#temporals.format(oneReview.Date, 'dd-MM-yyy HH:mm')}"></span></td>
+            <td></td>
+            <!--            <td><span th:text="${rating.stars}"></span></td>-->
+        </tr>
+        <tr class="table-secondary">
+            <th colspan="5">REVIEW</th>
+        </tr>
+        <tr class="table-secondary">
+            <td colspan="5"><span th:text="${oneReview.reviewText}"></span></td>
+        </tr>
+    </table>
+</div>
 </body>
 </html>

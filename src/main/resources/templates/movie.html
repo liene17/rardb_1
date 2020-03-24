@@ -6,6 +6,8 @@
     <link rel="stylesheet" type="text/css" th:href="@{/css/movie-table-positioning.css}"/>
     <link rel="stylesheet" type="text/css" th:href="@{/css/login.css}"/>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" integrity="sha256-h20CPZ0QyXlBuAw7A+KluUYx/3pK+c7lYEpqLTlxjYQ=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-star-rating/4.0.6/css/star-rating.min.css" integrity="sha256-erS4t9C/AvfShlGZwxOG4dnzQuWJhPDPf4xBcYnj+xc=" crossorigin="anonymous" />
 </head>
 <body>
 <img th:src="@{/images/header2.png}" class="img-fluid" alt="Responsive image"/>
@@ -79,16 +81,24 @@
             <th>Type</th>
             <td th:text="${oneMovie.Type}"/>
         </tr>
+    </table>
+    <table class="table table-bordered">
         <tr class="table-secondary">
-            <th>REVIEWS</th>
-            <td></td>
+            <th>USER INFO</th>
+            <th>RATING</th>
+            <th>REVIEW</th>
+            <th>FULL INFO</th>
         </tr>
         <div th:if="${not #lists.isEmpty(reviewsForThisMovie)}">
             <tr th:each="review: ${reviewsForThisMovie}" class="table-secondary">
                 <th> User: <span th:text="${review.userName}"></span>
                     <br>
                     <span class="table-head-format">Date, Time: <span th:text="${#temporals.format(review.Date, 'dd-MM-yyy HH:mm')}"></span></span></th>
-                <td><span th:text="${review.reviewText}"></span>
+                <td><span th:text="${rating.stars}"></span></td>
+                <td><span th:text="${review.reviewText}"></span></td>
+                <td><a th:href="@{/read-review/{id}/{imdbID}(id=${review.reviewId}, imdbID=${oneMovie.imdbID})}" class="btn btn-outline-dark">
+                    <span>SEE FULL REVIEW INFO</span>
+                </a></td>
             </tr>
         </div>
         <div th:unless="${not #lists.isEmpty(reviewsForThisMovie)}">
@@ -107,5 +117,10 @@
         </div>
     </div>
 </div>
+
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/popper.min.js" integrity="sha256-O17BxFKtTt1tzzlkcYwgONw4K59H+r1iI8mSQXvSf5k=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha256-WqU1JavFxSAMcLP2WIOI+GB2zWmShMI82mTpLDcqFUg=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-star-rating/4.0.6/js/star-rating.min.js" integrity="sha256-TX3InxvStdA3RUVQNAd3B6GW0P8aJPHmGoDxlwcAr98=" crossorigin="anonymous"></script>
 </body>
 </html>

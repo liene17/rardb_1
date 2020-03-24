@@ -1,5 +1,6 @@
 package lv.accenture.bootcamp.rardb.controller;
 
+import lv.accenture.bootcamp.rardb.model.Rating;
 import lv.accenture.bootcamp.rardb.model.Review;
 import lv.accenture.bootcamp.rardb.network.ImdbAPIService;
 import lv.accenture.bootcamp.rardb.network.ImdbMovieData;
@@ -7,6 +8,7 @@ import lv.accenture.bootcamp.rardb.repository.ReviewRepository;
 import lv.accenture.bootcamp.rardb.service.ReviewService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -53,6 +55,30 @@ public class ReviewController {
             reviewService.saveReview(reviewToAdd);
             modelAndView.setViewName("redirect:search/movie/"+ reviewToAdd.getImdbID());
         }
+        return modelAndView;
+    }
+
+    @GetMapping(value = "/review/rating")
+    public ModelAndView getRatingView(Model model) {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.addObject("rating", new Rating());
+        return modelAndView;
+    }
+
+    @PostMapping
+    public String save(Rating rating, Model model) {
+        model.addAttribute("rating", rating);
+        return "saved";
+    }
+
+    @GetMapping(value = "/read-review/{id}/{imdbID}")
+    public ModelAndView readOneReview(@PathVariable Integer id, @PathVariable String imdbID) {
+        ModelAndView modelAndView = new ModelAndView();
+        Review oneReview = reviewService.findByReviewID(id);
+        modelAndView.addObject("oneReview", oneReview);
+        ImdbMovieData oneMovie= imdbAPIService.getOneMovieOnly(imdbID);
+        modelAndView.addObject("oneMovie", oneMovie);
+        modelAndView.setViewName("read-review");
         return modelAndView;
     }
 }

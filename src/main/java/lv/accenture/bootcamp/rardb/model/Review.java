@@ -19,7 +19,7 @@ public class Review {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "review_id")
-    private Integer id;
+    private Integer reviewId;
 
     @Column(name = "imdbid")
     private String imdbID;
@@ -35,8 +35,8 @@ public class Review {
     @Column(name = "date")
     private OffsetDateTime date;
 
-    public Review(Integer id, String imdbID, String userName, String reviewText) {
-        this.id = id;
+    public Review(Integer reviewId, String imdbID, String userName, String reviewText) {
+        this.reviewId = reviewId;
         this.imdbID = imdbID;
         this.userName = userName;
         this.reviewText = reviewText;
@@ -50,8 +50,8 @@ public class Review {
 
     }
 
-    public Integer getId() {
-        return id;
+    public Integer getReviewId() {
+        return reviewId;
     }
 
     public String getImdbID() {
