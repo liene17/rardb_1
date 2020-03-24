@@ -8,8 +8,5 @@ import java.util.List;
 
 @Repository
 public interface ReviewRepository extends JpaRepository<Review, String> {
-//    @Query("SELECT r FROM reviews r WHERE r.imdbID =:imdbID")
-//    List<Review> findByImdbID(@Param(value= "imdbID") String imdbID);
-
     List<Review> findByImdbID(String imdbID);
 }

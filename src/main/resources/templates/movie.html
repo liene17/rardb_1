@@ -9,7 +9,7 @@
 </head>
 <body>
 <img th:src="@{/images/header2.png}" class="img-fluid" alt="Responsive image"/>
-<header th:insert="header.html :: header"> </header>
+<header th:insert="header.html :: header"></header>
 <br>
 <div th:if="${oneMovie != null}">
     <table class="table table-bordered">
@@ -17,10 +17,8 @@
             <th>Title</th>
             <td th:text="${oneMovie.Title}"/>
         </tr>
-
         <tr class="table-secondary">
             <th>Poster</th>
-
             <td>
                 <img class="poster-position" th:src="${oneMovie.Poster}" height="200px"/>
             </td>
@@ -57,7 +55,6 @@
             <th>Actors</th>
             <td th:text="${oneMovie.Actors}"/>
         </tr>
-
         <tr class="table-secondary">
             <th>Plot</th>
             <td th:text="${oneMovie.Plot}"/>
@@ -82,11 +79,27 @@
             <th>Type</th>
             <td th:text="${oneMovie.Type}"/>
         </tr>
+        <tr class="table-secondary">
+            <th>REVIEWS</th>
+            <td></td>
+        </tr>
+        <div th:if="${not #lists.isEmpty(reviewsForThisMovie)}">
+            <tr th:each="review: ${reviewsForThisMovie}" class="table-secondary">
+                <th th:text="${review.userName}"></th>
+                <td th:text="${review.reviewText}"></td>
+            </tr>
+        </div>
+        <div th:unless="${not #lists.isEmpty(reviewsForThisMovie)}">
+            <tr class="table-secondary">
+                    <th></th>
+                    <td>There are currently no reviews for this movie!</td>
+            </tr>
+        </div>
     </table>
 </div>
 
 <div th:unless="${oneMovie != null}">
-    <div class="card">-->
+    <div class="card">
         <div class="card-body">
             No movie found!
         </div>
