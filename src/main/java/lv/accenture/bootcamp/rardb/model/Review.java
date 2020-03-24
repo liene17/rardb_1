@@ -27,7 +27,7 @@ public class Review {
 
 
     @Column(name = "review_text")
-    @Size(min = 30, max = 2500)
+    @Size(min = 1, max = 2500)
     private String reviewText;
 
     @Column(name = "date")
