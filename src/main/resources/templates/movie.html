@@ -85,8 +85,10 @@
         </tr>
         <div th:if="${not #lists.isEmpty(reviewsForThisMovie)}">
             <tr th:each="review: ${reviewsForThisMovie}" class="table-secondary">
-                <th th:text="${review.userName}"></th>
-                <td th:text="${review.reviewText}"></td>
+                <th> User: <span th:text="${review.userName}"></span>
+                    <br>
+                    <span class="table-head-format">Date, Time: <span th:text="${#temporals.format(review.Date, 'dd-MM-yyy HH:mm')}"></span></span></th>
+                <td><span th:text="${review.reviewText}"></span>
             </tr>
         </div>
         <div th:unless="${not #lists.isEmpty(reviewsForThisMovie)}">

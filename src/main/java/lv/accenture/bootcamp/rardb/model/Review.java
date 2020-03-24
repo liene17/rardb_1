@@ -7,6 +7,7 @@ import lombok.Data;
 
 import javax.persistence.*;
 import javax.validation.constraints.Size;
+import java.time.OffsetDateTime;
 
 @Data
 @Builder
@@ -32,7 +33,7 @@ public class Review {
     private String reviewText;
 
     @Column(name = "date")
-    private String date;
+    private OffsetDateTime date;
 
     public Review(Integer id, String imdbID, String userName, String reviewText) {
         this.id = id;
@@ -77,7 +78,7 @@ public class Review {
         this.reviewText = reviewText;
     }
 
-    public String getDate() {
+    public OffsetDateTime getDate() {
         return date;
     }
 }

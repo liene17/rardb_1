@@ -21,7 +21,6 @@ public class RardbApplication implements CommandLineRunner {
 
 //		System.out.println(imdbAPIService.getImdbMovie("iron"));
 //		System.out.println(imdbAPIService.getOneMovieOnly("tt0120744"));
-		System.out.println();
 
 	}
 }

@@ -16,6 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.security.Principal;
+import java.time.ZoneId;
 
 @Controller
 public class ReviewController {
@@ -48,6 +49,7 @@ public class ReviewController {
         if (bindingResult.hasErrors()) {
             modelAndView.setViewName("add-review");
         } else {
+            reviewToAdd.setDate(java.time.OffsetDateTime.now(ZoneId.of("Europe/Riga")));
             reviewService.saveReview(reviewToAdd);
             modelAndView.setViewName("redirect:search/movie/"+ reviewToAdd.getImdbID());
         }
