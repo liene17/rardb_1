@@ -34,7 +34,7 @@
             <td th:text="${movie.Type}"/>
 
             <td>
-                <a th:href="@{/READREVIEWLINK}" class="btn btn-outline-dark">
+                <a th:href="@{/search/movie/{id}(id=${movie.imdbID})}" class="btn btn-outline-dark">
                     <span>READ REVIEWS</span>
                 </a>
                 <br/><br/>

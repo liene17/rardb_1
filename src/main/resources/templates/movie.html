@@ -85,7 +85,7 @@
         </tr>
         <div th:if="${not #lists.isEmpty(reviewsForThisMovie)}">
             <tr th:each="review: ${reviewsForThisMovie}" class="table-secondary">
-                <th th:text="${review.userName}"></th>
+                <th> User: <span th:text="${review.userName}"></span></th>
                 <td th:text="${review.reviewText}"></td>
             </tr>
         </div>
