@@ -5,6 +5,7 @@ import lv.accenture.bootcamp.rardb.model.Review;
 import lv.accenture.bootcamp.rardb.network.ImdbAPIService;
 import lv.accenture.bootcamp.rardb.network.ImdbMovieData;
 import lv.accenture.bootcamp.rardb.repository.ReviewRepository;
+import lv.accenture.bootcamp.rardb.service.RatingService;
 import lv.accenture.bootcamp.rardb.service.ReviewService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,6 +20,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.security.Principal;
 import java.time.ZoneId;
+import java.util.List;
 
 @Controller
 public class ReviewController {
@@ -31,6 +33,9 @@ public class ReviewController {
 
     @Autowired
     private ImdbAPIService imdbAPIService;
+
+    @Autowired
+    private RatingService ratingService;
 
     @GetMapping(value = "/review/add/{id}")
     public ModelAndView getReviewView(@PathVariable String id, HttpServletRequest request) {
@@ -58,12 +63,13 @@ public class ReviewController {
         return modelAndView;
     }
 
-    @GetMapping(value = "/review/rating")
-    public ModelAndView getRatingView(Model model) {
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.addObject("rating", new Rating());
-        return modelAndView;
-    }
+//    @GetMapping(value = "/read-review")
+//    public ModelAndView getRatingView(Model model) {
+//        ModelAndView modelAndView = new ModelAndView();
+//        modelAndView.addObject("rating", new Rating());
+//        modelAndView.setViewName("read-review");
+//        return modelAndView;
+//    }
 
     @PostMapping
     public String save(Rating rating, Model model) {
@@ -74,6 +80,19 @@ public class ReviewController {
     @GetMapping(value = "/read-review/{id}/{imdbID}")
     public ModelAndView readOneReview(@PathVariable Integer id, @PathVariable String imdbID) {
         ModelAndView modelAndView = new ModelAndView();
+        List<Rating> ratingExists = ratingService.findByReviewID(id);
+        if (ratingExists.size()>0) {
+            float ratingToUse = (float)0.0;
+
+            for(Rating rating : ratingExists){
+                ratingToUse=+rating.getStars();
+            }
+            ratingToUse = ratingToUse/ratingExists.size();
+            modelAndView.addObject("ratingToUse", ratingToUse);
+        } else {
+            modelAndView.addObject("ratingToUse", (float)0.0);
+        }
+        modelAndView.addObject("newRating", new Rating());
         Review oneReview = reviewService.findByReviewID(id);
         modelAndView.addObject("oneReview", oneReview);
         ImdbMovieData oneMovie= imdbAPIService.getOneMovieOnly(imdbID);
