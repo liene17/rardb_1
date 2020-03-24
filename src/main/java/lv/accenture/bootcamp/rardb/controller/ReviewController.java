@@ -49,17 +49,8 @@ public class ReviewController {
             modelAndView.setViewName("add-review");
         } else {
             reviewService.saveReview(reviewToAdd);
-            modelAndView.addObject("successMessage", "Review has been added successfully");
-            modelAndView.setViewName("redirect:movie/"+ reviewToAdd.getImdbID());
+            modelAndView.setViewName("redirect:search/movie/"+ reviewToAdd.getImdbID());
         }
         return modelAndView;
     }
-
-
-
-//    @PostMapping (value = "/review/add-review")
-//    public List generateReview(){
-//    List<Review> generatedReviews = new ArrayList<>();
-//    return generatedReviews;
-//    }
 }
