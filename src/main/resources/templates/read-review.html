@@ -46,9 +46,10 @@
             <td><span th:text="${#temporals.format(oneReview.Date, 'dd-MM-yyy HH:mm')}"></span></td>
             <td class="rating-tab">
                 <span th:text="${ratingToUse}"></span>
-                <form method="post" th:object="${newRating}" class="mt-5">
-<!--                    <input id="input-id" type="text" class="rating" data-min="0" data-max="5" data-step="1" >-->
-                    <input value="1" type="hidden" class="rating" data-glyphicon="0"
+                <form action="#"
+                      th:action="@{/addrating}"
+                      method="post" th:object="${newRating}" class="mt-5">
+                    <input value="0" type="hidden" class="rating" data-glyphicon="0"
                            th:field="*{stars}">
 
                     <input type="hidden" id="reviewID" name="reviewID" th:value="${oneReview.reviewId}">

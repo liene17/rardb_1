@@ -9,7 +9,6 @@ import lv.accenture.bootcamp.rardb.service.RatingService;
 import lv.accenture.bootcamp.rardb.service.ReviewService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,7 +17,9 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
+import java.math.RoundingMode;
 import java.security.Principal;
+import java.text.DecimalFormat;
 import java.time.ZoneId;
 import java.util.List;
 
@@ -51,7 +52,6 @@ public class ReviewController {
 
     @PostMapping(value = "/addreview")
     public ModelAndView addReview(@Valid Review reviewToAdd, BindingResult bindingResult) {
-        System.out.println(reviewToAdd.getReviewText());
         ModelAndView modelAndView = new ModelAndView();
         if (bindingResult.hasErrors()) {
             modelAndView.setViewName("add-review");
@@ -63,18 +63,15 @@ public class ReviewController {
         return modelAndView;
     }
 
-//    @GetMapping(value = "/read-review")
-//    public ModelAndView getRatingView(Model model) {
-//        ModelAndView modelAndView = new ModelAndView();
-//        modelAndView.addObject("rating", new Rating());
-//        modelAndView.setViewName("read-review");
-//        return modelAndView;
-//    }
-
-    @PostMapping
-    public String save(Rating rating, Model model) {
-        model.addAttribute("rating", rating);
-        return "saved";
+    @PostMapping(value = "/addrating")
+    public ModelAndView addRating(@Valid Rating ratingToAdd, BindingResult bindingResult, HttpServletRequest request) {
+        ModelAndView modelAndView = new ModelAndView();
+        if (!bindingResult.hasErrors()) {
+            ratingService.saveRating(ratingToAdd);
+        }
+        String imdbIdOfReview = reviewService.findByReviewID(ratingToAdd.getReviewID()).getImdbID();
+        modelAndView.setViewName("redirect:read-review/"+ ratingToAdd.getReviewID() + "/" + imdbIdOfReview);
+        return modelAndView;
     }
 
     @GetMapping(value = "/read-review/{id}/{imdbID}")
@@ -85,10 +82,12 @@ public class ReviewController {
             float ratingToUse = (float)0.0;
 
             for(Rating rating : ratingExists){
-                ratingToUse=+rating.getStars();
+                ratingToUse+=rating.getStars();
             }
             ratingToUse = ratingToUse/ratingExists.size();
-            modelAndView.addObject("ratingToUse", ratingToUse);
+            DecimalFormat df = new DecimalFormat("#.#");
+            df.setRoundingMode(RoundingMode.CEILING);
+            modelAndView.addObject("ratingToUse", df.format(ratingToUse));
         } else {
             modelAndView.addObject("ratingToUse", (float)0.0);
         }
