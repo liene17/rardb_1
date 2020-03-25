@@ -7,7 +7,6 @@ import lombok.Data;
 
 import javax.persistence.*;
 import javax.validation.constraints.Size;
-import java.text.DecimalFormat;
 import java.time.OffsetDateTime;
 
 @Data
@@ -131,8 +130,9 @@ public class Review implements Comparable< Review >{
         if(result == null){
             return 0.0f;
         } else {
-            DecimalFormat df = new DecimalFormat("#.#");
-            return Float.valueOf(df.format(result));
+//            DecimalFormat df = new DecimalFormat("#.#");
+//            return Float.valueOf(df.format(result));
+            return result;
         }
     }
 
