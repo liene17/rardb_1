@@ -81,31 +81,45 @@
             <td th:text="${oneMovie.Type}"/>
         </tr>
     </table>
-    <table class="table table-bordered">
+    <table class="table table-bordered" th:if="${not #lists.isEmpty(reviewsForThisMovie)}">
         <tr class="table-secondary">
             <th>USER INFO</th>
-            <th>RATING</th>
+            <th>REVIEW RATING</th>
             <th>REVIEW</th>
             <th>FULL INFO</th>
         </tr>
-        <div th:if="${not #lists.isEmpty(reviewsForThisMovie)}">
+        <div>
             <tr th:each="review: ${reviewsForThisMovie}" class="table-secondary">
                 <th> User: <span th:text="${review.userName}"></span>
                     <br>
-                    <span class="table-head-format">Date, Time: <span th:text="${#temporals.format(review.Date, 'dd-MM-yyy HH:mm')}"></span></span></th>
-                <td><span th:text="${rating.stars}"></span></td>
+                    <span class="table-head-format">Date, Time: <span
+                            th:text="${#temporals.format(review.Date, 'dd-MM-yyy HH:mm')}"></span></span></th>
+                <td><span th:text="${review.ratingForThisReview}"></span></td>
                 <td><span th:text="${review.reviewText}"></span></td>
-                <td><a th:href="@{/read-review/{id}/{imdbID}(id=${review.reviewId}, imdbID=${oneMovie.imdbID})}" class="btn btn-outline-dark">
+                <td><a th:href="@{/read-review/{id}/{imdbID}(id=${review.reviewId}, imdbID=${oneMovie.imdbID})}"
+                       class="btn btn-outline-dark">
                     <span>SEE FULL REVIEW INFO</span>
                 </a></td>
             </tr>
         </div>
-        <div th:unless="${not #lists.isEmpty(reviewsForThisMovie)}">
-            <tr class="table-secondary">
-                <th></th>
-                <td>There are currently no reviews for this movie!</td>
-            </tr>
-        </div>
+    </table>
+    <table th:unless="${not #lists.isEmpty(reviewsForThisMovie)}" class="table-width">
+        <tr>
+            <td class="text-font">There are currently no reviews for this movie!</td>
+        </tr>
+        <tr>
+            <td>
+                <a th:href="@{/review/add/{id}(id=${oneMovie.imdbID})}" sec:authorize="isAuthenticated()"
+                   class="btn btn-outline-dark">
+                    <span>WRITE REVIEW</span>
+                </a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <br/>
+            </td>
+        </tr>
     </table>
 </div>
 

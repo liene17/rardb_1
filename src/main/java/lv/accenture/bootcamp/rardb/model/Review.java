@@ -35,6 +35,8 @@ public class Review {
     @Column(name = "date")
     private OffsetDateTime date;
 
+    public String ratingForThisReview;
+
     public Review(Integer reviewId, String imdbID, String userName, String reviewText) {
         this.reviewId = reviewId;
         this.imdbID = imdbID;
