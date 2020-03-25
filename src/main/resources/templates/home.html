@@ -29,7 +29,7 @@
             <tr th:each="review: ${allSavedReviews}">
                 <td>
 
-                                <td th:text="${#finalMovies.?[imdbID == Title]}"/>
+<!--                                <td th:text="${#finalMovies.?[imdbID == Title]}"/>-->
                     <!--                <td th:text="${#finalMovies.?[age > 30]).![name].Title}"></td>-->
                 <td>
                     <!--                    <img class="poster-position" th:src="${oneMovie.Poster}" height="200px"/>-->
@@ -38,7 +38,7 @@
                     <span th:text="${review.userName}"></span>
                 </td>
                 <td><span th:text="${review.getRatingForThisReview()}"></span></td>
-                <td colspan="5" class="text-placement "><span th:text="${review.reviewText}"></span></td>
+                <td><span th:text="${review.reviewText}"></span></td>
                 <td><span th:text="${#temporals.format(review.Date, 'dd-MM-yyy HH:mm')}"></span></td>
 <!--                <td><a th:href="@{/read-review/{id}/{imdbID}(id=${review.reviewId}, imdbID=${oneMovie.imdbID})}"-->
 <!--                       class="btn btn-outline-dark">-->
