@@ -12,8 +12,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.math.RoundingMode;
-import java.text.DecimalFormat;
 import java.util.List;
 
 @Controller
@@ -36,17 +34,19 @@ public class MovieController {
         for(Review reviewInList : reviewsForThisMovie){
             List<Rating> ratingExists = ratingService.findByReviewID(reviewInList.getReviewId());
             if (ratingExists.size()>0) {
-                float ratingToUse = (float)0.0;
+                Float ratingToUse = 0.0f;
 
                 for(Rating rating : ratingExists){
                     ratingToUse+=rating.getStars();
                 }
                 ratingToUse = ratingToUse/ratingExists.size();
-                DecimalFormat df = new DecimalFormat("#.#");
-                df.setRoundingMode(RoundingMode.CEILING);
-                reviewInList.ratingForThisReview = df.format(ratingToUse);
+                if(ratingToUse == null){
+                    reviewInList.ratingForThisReview = 0.0f;
+                } else {
+                    reviewInList.ratingForThisReview = ratingToUse;
+                }
             } else {
-                reviewInList.ratingForThisReview = "0,0";
+                reviewInList.ratingForThisReview = 0.0f;
             }
         }
         modelAndView.addObject("oneMovie", oneMovie);

@@ -35,21 +35,23 @@ public class Review {
     @Column(name = "date")
     private OffsetDateTime date;
 
-    public String ratingForThisReview;
+    public java.lang.Float ratingForThisReview;
 
     public Review(Integer reviewId, String imdbID, String userName, String reviewText) {
         this.reviewId = reviewId;
         this.imdbID = imdbID;
         this.userName = userName;
         this.reviewText = reviewText;
+        ratingForThisReview=0.0f;
     }
 
     public Review(String userName) {
         this.userName = userName;
+        ratingForThisReview=0.0f;
 
     }
     public Review() {
-
+        ratingForThisReview=0.0f;
     }
 
     public Integer getReviewId() {
