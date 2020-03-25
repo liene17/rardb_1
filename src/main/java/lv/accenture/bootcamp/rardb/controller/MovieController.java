@@ -29,26 +29,17 @@ public class MovieController {
     @GetMapping(value = "/search/movie/{id}")
     public ModelAndView oneMovieInfo(@PathVariable String id) {
         ModelAndView modelAndView = new ModelAndView();
-        ImdbMovieData oneMovie= imdbAPIService.getOneMovieOnly(id);
+        ImdbMovieData oneMovie = imdbAPIService.getOneMovieOnly(id);
         List<Review> reviewsForThisMovie = reviewService.findByImdbID(id);
-        for(Review reviewInList : reviewsForThisMovie){
-            List<Rating> ratingExists = ratingService.findByReviewID(reviewInList.getReviewId());
-            if (ratingExists.size()>0) {
-                Float ratingToUse = 0.0f;
-
-                for(Rating rating : ratingExists){
-                    ratingToUse+=rating.getStars();
-                }
-                ratingToUse = ratingToUse/ratingExists.size();
-                if(ratingToUse == null){
-                    reviewInList.ratingForThisReview = 0.0f;
-                } else {
-                    reviewInList.ratingForThisReview = ratingToUse;
-                }
-            } else {
+        for (Review reviewInList : reviewsForThisMovie) {
+            Float ratingToUse = reviewInList.getRatingForThisReview();
+            if (ratingToUse == null) {
                 reviewInList.ratingForThisReview = 0.0f;
+            } else {
+                reviewInList.ratingForThisReview = ratingToUse;
             }
         }
+
         modelAndView.addObject("oneMovie", oneMovie);
         modelAndView.addObject("reviewsForThisMovie", reviewsForThisMovie);
         modelAndView.addObject("rating", new Rating());

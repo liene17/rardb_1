@@ -21,7 +21,8 @@ import java.math.RoundingMode;
 import java.security.Principal;
 import java.text.DecimalFormat;
 import java.time.ZoneId;
-import java.util.List;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @Controller
 public class ReviewController {
@@ -58,7 +59,7 @@ public class ReviewController {
         } else {
             reviewToAdd.setDate(java.time.OffsetDateTime.now(ZoneId.of("Europe/Riga")));
             reviewService.saveReview(reviewToAdd);
-            modelAndView.setViewName("redirect:search/movie/"+ reviewToAdd.getImdbID());
+            modelAndView.setViewName("redirect:search/movie/" + reviewToAdd.getImdbID());
         }
         return modelAndView;
     }
@@ -69,8 +70,20 @@ public class ReviewController {
         if (!bindingResult.hasErrors()) {
             ratingService.saveRating(ratingToAdd);
         }
+        Review reviewToUpdate = reviewService.findByReviewID(ratingToAdd.getReviewID());
+        if (reviewToUpdate.totalRatingCount == null)
+            reviewToUpdate.totalRatingCount = 1;
+        else {
+            reviewToUpdate.totalRatingCount++;
+        }
+        if (reviewToUpdate.totalRatingSum == null)
+            reviewToUpdate.totalRatingSum = ratingToAdd.getStars();
+        else {
+            reviewToUpdate.totalRatingSum += ratingToAdd.getStars();
+        }
+        reviewService.saveReview(reviewToUpdate);
         String imdbIdOfReview = reviewService.findByReviewID(ratingToAdd.getReviewID()).getImdbID();
-        modelAndView.setViewName("redirect:read-review/"+ ratingToAdd.getReviewID() + "/" + imdbIdOfReview);
+        modelAndView.setViewName("redirect:read-review/" + ratingToAdd.getReviewID() + "/" + imdbIdOfReview);
         return modelAndView;
     }
 
@@ -78,25 +91,39 @@ public class ReviewController {
     public ModelAndView readOneReview(@PathVariable Integer id, @PathVariable String imdbID) {
         ModelAndView modelAndView = new ModelAndView();
         List<Rating> ratingExists = ratingService.findByReviewID(id);
-        if (ratingExists.size()>0) {
-            float ratingToUse = (float)0.0;
-
-            for(Rating rating : ratingExists){
-                ratingToUse+=rating.getStars();
-            }
-            ratingToUse = ratingToUse/ratingExists.size();
+        Review thisReview = reviewService.findByReviewID(id);
+        if (ratingExists.size() > 0) {
+            Float ratingToUse = thisReview.getRatingForThisReview();
             DecimalFormat df = new DecimalFormat("#.#");
             df.setRoundingMode(RoundingMode.CEILING);
             modelAndView.addObject("ratingToUse", df.format(ratingToUse));
         } else {
-            modelAndView.addObject("ratingToUse", (float)0.0);
+            modelAndView.addObject("ratingToUse", 0.0f);
         }
         modelAndView.addObject("newRating", new Rating());
         Review oneReview = reviewService.findByReviewID(id);
         modelAndView.addObject("oneReview", oneReview);
-        ImdbMovieData oneMovie= imdbAPIService.getOneMovieOnly(imdbID);
+        ImdbMovieData oneMovie = imdbAPIService.getOneMovieOnly(imdbID);
         modelAndView.addObject("oneMovie", oneMovie);
         modelAndView.setViewName("read-review");
+        return modelAndView;
+    }
+
+    @GetMapping(value = "/home")
+    public ModelAndView seeHighestReviewRatings() {
+        ModelAndView modelAndView = new ModelAndView();
+        List<Review> allSavedReviews = reviewRepository.findAll();
+        Collections.sort(allSavedReviews, Collections.reverseOrder());
+        modelAndView.addObject("allSavedReviews", allSavedReviews);
+        List<String> movieIds = allSavedReviews.stream().map(x -> x.getImdbID()).collect(Collectors.toList());
+        Set<String> idsWithoutDuplicates = new HashSet<>(movieIds);
+        List<String> movieTitlesFromSet = new ArrayList<>(idsWithoutDuplicates);
+        List<ImdbMovieData> finalMovies = new ArrayList<>();
+        for (int i = 0; i < movieTitlesFromSet.size(); i++) {
+           finalMovies.add(imdbAPIService.getOneMovieOnly(movieTitlesFromSet.get(i)));
+        }
+        modelAndView.addObject("finalMovies", finalMovies);
+        modelAndView.setViewName("home");
         return modelAndView;
     }
 }

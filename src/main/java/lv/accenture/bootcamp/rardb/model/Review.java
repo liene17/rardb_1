@@ -14,7 +14,7 @@ import java.time.OffsetDateTime;
 @AllArgsConstructor
 @Entity
 @Table(name = "reviews")
-public class Review {
+public class Review implements Comparable< Review >{
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -35,6 +35,10 @@ public class Review {
     @Column(name = "date")
     private OffsetDateTime date;
 
+    public java.lang.Float totalRatingSum;
+
+    public Integer totalRatingCount;
+
     public java.lang.Float ratingForThisReview;
 
     public Review(Integer reviewId, String imdbID, String userName, String reviewText) {
@@ -42,16 +46,19 @@ public class Review {
         this.imdbID = imdbID;
         this.userName = userName;
         this.reviewText = reviewText;
-        ratingForThisReview=0.0f;
+        totalRatingSum=0.0f;
+        totalRatingCount =0;
     }
 
     public Review(String userName) {
         this.userName = userName;
-        ratingForThisReview=0.0f;
+        totalRatingSum=0.0f;
+        totalRatingCount =0;
 
     }
     public Review() {
-        ratingForThisReview=0.0f;
+        totalRatingSum=0.0f;
+        totalRatingCount =0;
     }
 
     public Integer getReviewId() {
@@ -84,6 +91,43 @@ public class Review {
 
     public OffsetDateTime getDate() {
         return date;
+    }
+
+    public Float getTotalRatingSum() {
+        return totalRatingSum;
+    }
+
+    public void setTotalRatingSum(Float totalRatingSum) {
+        this.totalRatingSum = totalRatingSum;
+    }
+
+    public Integer getTotalRatingCount() {
+        return totalRatingCount;
+    }
+
+    public void setTotalRatingCount(Integer totalRatingCount) {
+        this.totalRatingCount = totalRatingCount;
+    }
+
+    public Float getRatingForThisReview() {
+        Float result = 0.0f;
+        if(totalRatingCount != null && totalRatingCount != 0){
+            result = totalRatingSum/totalRatingCount;
+        }
+        if(result == null){
+            return 0.0f;
+        } else {
+            return result;
+        }
+    }
+
+    public void setRatingForThisReview(Float ratingForThisReview) {
+        this.ratingForThisReview = ratingForThisReview;
+    }
+
+    @Override
+    public int compareTo(Review o) {
+        return this.getRatingForThisReview().compareTo(o.getRatingForThisReview());
     }
 }
 

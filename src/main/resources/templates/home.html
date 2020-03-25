@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml"
+      xmlns:left="http://www.w3.org/1999/xhtml" xmlns:right="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Home page</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/login.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/index.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/welcome.css}"/>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+</head>
+
+<body style="background-color:white;">
+<div xmlns:sec="http://www.w3.org/1999/xhtml" xmlns:th="http://www.w3.org/1999/xhtml" th:fragment="header">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/index.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/welcome.css}"/>
+    <div> TOP of the best REVIEWS</div>
+    <div>
+        <table class="table table-bordered">
+            <tr class="table-secondary">
+
+                <th scope="col">Review for movie: </th>
+                <th scope="col">Poster</th>
+                <th scope="col">User</th>
+                <th scope="col">Rating</th>
+                <th scope="col">Review text</th>
+                <th scope="col">Time</th>
+                <th scope="col">More info</th>
+            </tr>
+            <tr th:each="review: ${allSavedReviews}">
+                <td>
+
+                                <td th:text="${#finalMovies.?[imdbID == Title]}"/>
+                    <!--                <td th:text="${#finalMovies.?[age > 30]).![name].Title}"></td>-->
+                <td>
+                    <!--                    <img class="poster-position" th:src="${oneMovie.Poster}" height="200px"/>-->
+                </td>
+                <td>
+                    <span th:text="${review.userName}"></span>
+                </td>
+                <td><span th:text="${review.getRatingForThisReview()}"></span></td>
+                <td colspan="5" class="text-placement "><span th:text="${review.reviewText}"></span></td>
+                <td><span th:text="${#temporals.format(review.Date, 'dd-MM-yyy HH:mm')}"></span></td>
+<!--                <td><a th:href="@{/read-review/{id}/{imdbID}(id=${review.reviewId}, imdbID=${oneMovie.imdbID})}"-->
+<!--                       class="btn btn-outline-dark">-->
+<!--                    <span>SEE FULL REVIEW INFO</span>-->
+<!--                </a></td>-->
+            </tr>
+        </table>
+    </div>
+</div>
+</body>
+</html>
