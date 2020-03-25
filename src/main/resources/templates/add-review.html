@@ -39,6 +39,8 @@
                       th:object="${review}" method="post">
                     <div class="form-group">
                         <input type="hidden" id="imdbID" name="imdbID" th:value="${thisMovie.imdbID}">
+                        <input type="hidden" id="movieTitle" name="movieTitle" th:value="${thisMovie.Title}">
+                        <input type="hidden" id="moviePoster" name="moviePoster" th:value="${thisMovie.Poster}">
                         <input type="hidden" id="userName" name="userName" th:value="${review.userName}">
 
                         <label for="review"></label>

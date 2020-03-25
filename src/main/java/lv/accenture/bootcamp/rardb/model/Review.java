@@ -35,20 +35,17 @@ public class Review implements Comparable< Review >{
     @Column(name = "date")
     private OffsetDateTime date;
 
+    @Column(name = "movie_title")
+    private String movieTitle;
+
+    @Column(name = "movie_poster")
+    private String moviePoster;
+
     public java.lang.Float totalRatingSum;
 
     public Integer totalRatingCount;
 
     public java.lang.Float ratingForThisReview;
-
-    public Review(Integer reviewId, String imdbID, String userName, String reviewText) {
-        this.reviewId = reviewId;
-        this.imdbID = imdbID;
-        this.userName = userName;
-        this.reviewText = reviewText;
-        totalRatingSum=0.0f;
-        totalRatingCount =0;
-    }
 
     public Review(String userName) {
         this.userName = userName;
@@ -107,6 +104,22 @@ public class Review implements Comparable< Review >{
 
     public void setTotalRatingCount(Integer totalRatingCount) {
         this.totalRatingCount = totalRatingCount;
+    }
+
+    public String getMovieTitle() {
+        return movieTitle;
+    }
+
+    public void setMovieTitle(String movieTitle) {
+        this.movieTitle = movieTitle;
+    }
+
+    public String getMoviePoster() {
+        return moviePoster;
+    }
+
+    public void setMoviePoster(String moviePoster) {
+        this.moviePoster = moviePoster;
     }
 
     public Float getRatingForThisReview() {

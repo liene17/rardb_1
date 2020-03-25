@@ -21,8 +21,7 @@ import java.math.RoundingMode;
 import java.security.Principal;
 import java.text.DecimalFormat;
 import java.time.ZoneId;
-import java.util.*;
-import java.util.stream.Collectors;
+import java.util.List;
 
 @Controller
 public class ReviewController {
@@ -106,24 +105,6 @@ public class ReviewController {
         ImdbMovieData oneMovie = imdbAPIService.getOneMovieOnly(imdbID);
         modelAndView.addObject("oneMovie", oneMovie);
         modelAndView.setViewName("read-review");
-        return modelAndView;
-    }
-
-    @GetMapping(value = "/home")
-    public ModelAndView seeHighestReviewRatings() {
-        ModelAndView modelAndView = new ModelAndView();
-        List<Review> allSavedReviews = reviewRepository.findAll();
-        Collections.sort(allSavedReviews, Collections.reverseOrder());
-        modelAndView.addObject("allSavedReviews", allSavedReviews);
-        List<String> movieIds = allSavedReviews.stream().map(x -> x.getImdbID()).collect(Collectors.toList());
-        Set<String> idsWithoutDuplicates = new HashSet<>(movieIds);
-        List<String> movieTitlesFromSet = new ArrayList<>(idsWithoutDuplicates);
-        List<ImdbMovieData> finalMovies = new ArrayList<>();
-        for (int i = 0; i < movieTitlesFromSet.size(); i++) {
-           finalMovies.add(imdbAPIService.getOneMovieOnly(movieTitlesFromSet.get(i)));
-        }
-        modelAndView.addObject("finalMovies", finalMovies);
-        modelAndView.setViewName("home");
         return modelAndView;
     }
 }
