@@ -16,12 +16,13 @@
     <table class="table table-bordered">
         <tr class="table-secondary">
             <th>Title</th>
-            <td th:text="${oneMovie.Title}"/>
+            <td th:text="${oneMovie.Title}" style="text-align: center; font-size: 140%; font-family: arial;"/>
         </tr>
         <tr class="table-secondary">
             <th>Poster</th>
             <td>
-                <img class="poster-position" th:src="${oneMovie.Poster}" height="200px"/>
+                <img class="poster-position" th:src="${oneMovie.Poster}" height="300px"
+                     style="display: block;  margin-left: auto; margin-right: auto"/>
             </td>
         </tr>
         <tr class="table-secondary">

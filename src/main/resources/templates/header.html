@@ -1,19 +1,23 @@
 <div xmlns:sec="http://www.w3.org/1999/xhtml" xmlns:th="http://www.w3.org/1999/xhtml" th:fragment="header">
     <link rel="stylesheet" type="text/css" th:href="@{/css/index.css}"/>
     <link rel="stylesheet" type="text/css" th:href="@{/css/welcome.css}"/>
+
     <div sec:authorize="isAuthenticated()">
         <div class="welcome"><br>Hello, <span sec:authentication="name"> </span>
         </div>
         <form th:action="@{/logout}" method="get" class="index2">
             <button class="btn btn-outline-dark" name="Submit" value="Logout" type="Submit"
                     th:text="Logout"></button>
+            <a th:href="@{/}" class="btn btn-outline-dark">
+                <span><b>Home</b></span>
+            </a>
         </form>
     </div>
     <br>
     <div sec:authorize="!isAuthenticated()">
         <span class="welcome">Want to log in?</span>
         <button class="btn btn-outline-dark"><a th:href="@{/login}">
-            <span class="welcome" style="color:black; text-align: center">Go To Login</span></a>
+            <span class="text-center" style="color:black;">Go To Login</span></a>
         </button>
         <a th:href="@{/}" class="btn btn-outline-dark">
             <span><b>Home</b></span>

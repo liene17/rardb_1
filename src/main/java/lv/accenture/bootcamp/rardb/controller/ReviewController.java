@@ -120,7 +120,7 @@ public class ReviewController {
         List<String> movieTitlesFromSet = new ArrayList<>(idsWithoutDuplicates);
         List<ImdbMovieData> finalMovies = new ArrayList<>();
         for (int i = 0; i < movieTitlesFromSet.size(); i++) {
-           finalMovies.add(imdbAPIService.getOneMovieOnly(movieTitlesFromSet.get(i)));
+            finalMovies.add(imdbAPIService.getOneMovieOnly(movieTitlesFromSet.get(i)));
         }
         modelAndView.addObject("finalMovies", finalMovies);
         modelAndView.setViewName("home");

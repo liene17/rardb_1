@@ -23,10 +23,12 @@
         </tr>
         <tr th:each="movie: ${movies}" class="table-secondary">
             <td>
-                <img class="poster-position" th:src="${movie.Poster}" height="200px"/>
+                <img class="poster-position" th:src="${movie.Poster}" height="200px"
+                     style="display: block;  margin-left: auto; margin-right: auto"/>
             </td>
             <td>
-                <a th:href="@{/search/movie/{id}(id=${movie.imdbID})}" th:text="${movie.Title}">
+                <a th:href="@{/search/movie/{id}(id=${movie.imdbID})}" th:text="${movie.Title}"
+                   style="color:black; font-size: 140%; font-family: arial;">
                 </a>
 
             </td>
