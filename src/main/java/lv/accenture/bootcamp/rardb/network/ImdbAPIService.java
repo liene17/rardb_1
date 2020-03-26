@@ -20,6 +20,8 @@ public class ImdbAPIService {
     @Value("${api.request}")
     private String requestUrl;
 
+    //TODO: huge copy-paste between bowh methods
+
     public List<ImdbListData> getImdbMovie(String title) {
         try {
             Path path = Paths.get("./api_key.txt");

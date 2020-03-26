@@ -16,6 +16,8 @@ import static org.mockito.MockitoAnnotations.initMocks;
 
 public class UserServiceTest {
 
+    //TODO : why test is in code part (src/main/..., not in src/test/... ) ?
+
     @Mock
     private UserRepository mockUserRepository;
     @Mock

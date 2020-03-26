@@ -12,6 +12,9 @@ import javax.persistence.*;
 @Table(name = "ratings")
 public class Rating {
 
+    //TODO : in such approach any user can submit multiple times.
+    // Think of adding userId and @Unique usage
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "rating_id")

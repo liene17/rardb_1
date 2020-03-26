@@ -70,6 +70,7 @@ public class ReviewController {
             ratingService.saveRating(ratingToAdd);
         }
         Review reviewToUpdate = reviewService.findByReviewID(ratingToAdd.getReviewID());
+        // Can merge this 2 IFs
         if (reviewToUpdate.totalRatingCount == null)
             reviewToUpdate.totalRatingCount = 1;
         else {
@@ -102,6 +103,10 @@ public class ReviewController {
         modelAndView.addObject("newRating", new Rating());
         Review oneReview = reviewService.findByReviewID(id);
         modelAndView.addObject("oneReview", oneReview);
+
+        //TODO: serious problem here : querying external API is much more "expensive"
+        // operation than querying own database. Info about each movie should be saved in DB
+        // when somebody writes review on it!
         ImdbMovieData oneMovie = imdbAPIService.getOneMovieOnly(imdbID);
         modelAndView.addObject("oneMovie", oneMovie);
         modelAndView.setViewName("read-review");

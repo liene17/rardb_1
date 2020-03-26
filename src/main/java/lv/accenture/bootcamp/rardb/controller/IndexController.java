@@ -21,6 +21,9 @@ public class IndexController {
     public ModelAndView toIndex() {
 
         ModelAndView modelAndView = new ModelAndView();
+
+        // TODO: Very ineffective. What if DB contains thousands, millions of reviews?
+        // Much better way is to delegate it to DB (compute average, join tables, aggregate by reviewId, LIMIT 10)
         List<Review> allSavedReviews = reviewRepository.findAll();
         Collections.sort(allSavedReviews, Collections.reverseOrder());
         modelAndView.addObject("allSavedReviews", allSavedReviews);
