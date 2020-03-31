@@ -27,6 +27,8 @@ public class Review implements Comparable< Review >{
     @Column(name = "user_name")
     private String userName;
 
+    @Column(name = "user_id")
+    private Integer userId;
 
     @Column(name = "review_text")
     @Size(min = 1, max = 2500)
@@ -47,11 +49,11 @@ public class Review implements Comparable< Review >{
 
     public java.lang.Float ratingForThisReview;
 
-    public Review(String userName) {
+    public Review(String userName, Integer userId) {
         this.userName = userName;
+        this.userId = userId;
         totalRatingSum=0.0f;
         totalRatingCount =0;
-
     }
     public Review() {
         totalRatingSum=0.0f;
@@ -120,6 +122,14 @@ public class Review implements Comparable< Review >{
 
     public void setMoviePoster(String moviePoster) {
         this.moviePoster = moviePoster;
+    }
+
+    public Integer getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Integer userId) {
+        this.userId = userId;
     }
 
     public Float getRatingForThisReview() {

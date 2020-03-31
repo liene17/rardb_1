@@ -25,7 +25,7 @@
                 <td><span th:text="${review.getRatingForThisReview()}"></span></td>
                 <td><span th:text="${review.reviewText}"></span></td>
                 <td><span th:text="${#temporals.format(review.Date, 'dd-MM-yyy HH:mm')}"></span></td>
-                <td><a th:href="@{/read-review/{id}/{imdbID}(id=${review.reviewId}, imdbID=${review.imdbID})}"
+                <td><a th:href="@{/read-review/{id}/(id=${review.reviewId})}"
                        class="btn btn-outline-dark">
                     <span>SEE FULL REVIEW INFO</span>
                 </a></td>
