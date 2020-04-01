@@ -1,8 +1,9 @@
-package lv.accenture.bootcamp.rardb.service;
+package lv.accenture.bootcamp.rardb;
 
 import lv.accenture.bootcamp.rardb.model.User;
 import lv.accenture.bootcamp.rardb.repository.RoleRepository;
 import lv.accenture.bootcamp.rardb.repository.UserRepository;
+import lv.accenture.bootcamp.rardb.service.UserService;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
@@ -36,9 +37,9 @@ public class UserServiceTest {
                 mockBCryptPasswordEncoder);
         user = User.builder()
                 .id(1)
-                .name("Gustavo")
-                .lastName("Ponce")
-                .email("test@test.com")
+                .name("Liene")
+                .lastName("Ruduka")
+                .email("rudukaliene@gmail.com")
                 .build();
 
         Mockito.when(mockUserRepository.save(any()))
@@ -50,7 +51,7 @@ public class UserServiceTest {
     @Test
     public void testFindUserByEmail() {
         // Setup
-        final String email = "test@test.com";
+        final String email = "rudukaliene@gmail.com";
 
         // Run the test
         final User result = userServiceUnderTest.findUserByEmail(email);
@@ -62,7 +63,7 @@ public class UserServiceTest {
     @Test
     public void testSaveUser() {
         // Setup
-        final String email = "test@test.com";
+        final String email = "rudukaliene@gmail.com";
 
         // Run the test
         User result = userServiceUnderTest.saveUser(User.builder().build());
