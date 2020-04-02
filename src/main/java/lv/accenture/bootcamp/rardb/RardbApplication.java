@@ -8,6 +8,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class RardbApplication {
 	//TODO : implements CommandLineRunner is not necessary (together with empty run() )
+	//done by Santa
 
 	@Autowired
 	private ImdbAPIService imdbAPIService;

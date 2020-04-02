@@ -27,8 +27,5 @@ public class RatingService {
 
     public Rating findByUserNameReviewId(String userNameOfRating, Integer reviewID) {
         return ratingRepository.findByUserNameReviewId(userNameOfRating, reviewID);
-    };
-
-
-
+    }
 }

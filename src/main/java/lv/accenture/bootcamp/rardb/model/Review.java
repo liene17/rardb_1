@@ -18,7 +18,7 @@ public class Review implements Comparable< Review >{
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "review_id")
+    @Column(name = "Review_id")
     private Integer reviewId;
 
     @Column(name = "imdbid")

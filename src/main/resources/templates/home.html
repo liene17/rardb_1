@@ -15,7 +15,7 @@
                 <th scope="col">Time</th>
                 <th scope="col">More info</th>
             </tr>
-            <tr th:each="review: ${allSavedReviews}">
+            <tr th:each="review: ${reviewTop}">
                 <td>
                     <span th:text="${review.movieTitle}"></span>
                 <td>
