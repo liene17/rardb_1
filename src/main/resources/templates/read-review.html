@@ -49,20 +49,19 @@
                 <div sec:authorize="isAuthenticated()">
                     <div th:if="${oneReview.userName != authorUserName}">
                         <div th:if="${!authorMadeRatingAlready}">
+                            <form   action="#"
+                                    th:action="@{/addrating}"
+                                    method="post" th:object="${newRating}" class="mt-5">
+                                <input value="0" type="hidden" class="rating" data-glyphicon="0"
+                                       th:field="*{stars}">
 
-                        <form
-                                action="#"
-                                th:action="@{/addrating}"
-                                method="post" th:object="${newRating}" class="mt-5">
-                            <input value="0" type="hidden" class="rating" data-glyphicon="0"
-                                   th:field="*{stars}">
+                                <input type="hidden" id="reviewID" name="reviewID" th:value="${oneReview.reviewId}">
+                                <input type="hidden" id="userNameOfRating" name="userNameOfRating"
+                                       th:value="${authorUserName}">
 
-                            <input type="hidden" id="reviewID" name="reviewID" th:value="${oneReview.reviewId}">
-                            <input type="hidden" id="userNameOfRating" name="userNameOfRating" th:value="${authorUserName}">
-
-                            <button class="btn btn-info" type="submit" style="margin-top: 10px;">Submit my rating
-                            </button>
-                        </form>
+                                <button class="btn btn-info" type="submit" style="margin-top: 10px;">Submit my rating
+                                </button>
+                            </form>
                         </div>
                         <div th:unless="${!authorMadeRatingAlready}">
                             <br>

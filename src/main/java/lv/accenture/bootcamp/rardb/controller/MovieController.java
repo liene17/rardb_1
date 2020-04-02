@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.text.DecimalFormat;
 import java.util.List;
 
 @Controller
@@ -34,9 +35,10 @@ public class MovieController {
         for (Review reviewInList : reviewsForThisMovie) {
             Float ratingToUse = reviewInList.getRatingForThisReview();
             if (ratingToUse == null) {
-                reviewInList.ratingForThisReview = 0.0f;
+                reviewInList.ratingForThisReview = "0.0";
             } else {
-                reviewInList.ratingForThisReview = ratingToUse;
+                DecimalFormat df = new DecimalFormat("#.#");
+                reviewInList.ratingForThisReview = df.format(ratingToUse);
             }
         }
 

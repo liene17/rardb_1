@@ -44,7 +44,7 @@ public class Review implements Comparable< Review >{
 
     public Integer totalRatingCount;
 
-    public java.lang.Float ratingForThisReview;
+    public String ratingForThisReview;
 
     public Review(String userName) {
         this.userName = userName;
@@ -128,17 +128,11 @@ public class Review implements Comparable< Review >{
         if(result == null){
             return 0.0f;
         } else {
-//            DecimalFormat df = new DecimalFormat("#.#");
-//            df.setRoundingMode(RoundingMode.CEILING);
-//           result = Float.valueOf(df.format(result));
-//
-//            DecimalFormat df = new DecimalFormat("#.#");
-//            return Float.valueOf(df.format(result));
             return result;
         }
     }
 
-    public void setRatingForThisReview(Float ratingForThisReview) {
+    public void setRatingForThisReview(String ratingForThisReview) {
         this.ratingForThisReview = ratingForThisReview;
     }
 

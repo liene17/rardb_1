@@ -17,7 +17,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
-import java.math.RoundingMode;
 import java.security.Principal;
 import java.text.DecimalFormat;
 import java.time.ZoneId;
@@ -107,10 +106,9 @@ public class ReviewController {
         if (ratingExists.size() > 0) {
             Float ratingToUse = thisReview.getRatingForThisReview();
             DecimalFormat df = new DecimalFormat("#.#");
-            df.setRoundingMode(RoundingMode.CEILING);
             modelAndView.addObject("ratingToUse", df.format(ratingToUse));
         } else {
-            modelAndView.addObject("ratingToUse", 0.0f);
+            modelAndView.addObject("ratingToUse", "0.0");
         }
         modelAndView.addObject("newRating", new Rating());
         Review oneReview = reviewService.findByReviewID(id);

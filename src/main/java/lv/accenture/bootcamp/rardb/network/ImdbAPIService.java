@@ -63,6 +63,7 @@ public class ImdbAPIService {
 
     public List<ImdbListData> getImdbMovie(String title) {
         try {
+            title= title.replace(' ', '+');
             URL url = new URL(requestUrl + "apikey=" + getAPIkey() + "&s=" + title);
             String jsonResponse = urlProcess(url);
             Gson gson = new Gson();
