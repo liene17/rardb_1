@@ -9,8 +9,6 @@ public class ImdbMovieList {
     private String Response;
 
 
-    // Getter Methods
-
     public String getTotalResults() {
         return totalResults;
     }
@@ -18,8 +16,6 @@ public class ImdbMovieList {
     public String getResponse() {
         return Response;
     }
-
-    // Setter Methods
 
     public void setTotalResults(String totalResults) {
         this.totalResults = totalResults;

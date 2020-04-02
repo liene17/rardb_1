@@ -46,17 +46,34 @@
             <td><span th:text="${#temporals.format(oneReview.Date, 'dd-MM-yyy HH:mm')}"></span></td>
             <td class="rating-tab">
                 <span th:text="${ratingToUse}"></span>
-                <form sec:authorize="isAuthenticated()"
-                      action="#"
-                      th:action="@{/addrating}"
-                      method="post" th:object="${newRating}" class="mt-5">
-                    <input value="0" type="hidden" class="rating" data-glyphicon="0"
-                           th:field="*{stars}">
+                <div sec:authorize="isAuthenticated()">
+                    <div th:if="${oneReview.userName != authorUserName}">
+                        <div th:if="${!authorMadeRatingAlready}">
 
-                    <input type="hidden" id="reviewID" name="reviewID" th:value="${oneReview.reviewId}">
+                        <form
+                                action="#"
+                                th:action="@{/addrating}"
+                                method="post" th:object="${newRating}" class="mt-5">
+                            <input value="0" type="hidden" class="rating" data-glyphicon="0"
+                                   th:field="*{stars}">
 
-                    <button class="btn btn-info" type="submit" style="margin-top: 10px;">Submit my rating</button>
-                </form>
+                            <input type="hidden" id="reviewID" name="reviewID" th:value="${oneReview.reviewId}">
+                            <input type="hidden" id="userNameOfRating" name="userNameOfRating" th:value="${authorUserName}">
+
+                            <button class="btn btn-info" type="submit" style="margin-top: 10px;">Submit my rating
+                            </button>
+                        </form>
+                        </div>
+                        <div th:unless="${!authorMadeRatingAlready}">
+                            <br>
+                            <b sec:authentication="name"> </b> has already rated this review.
+                        </div>
+                    </div>
+                    <div th:unless="${oneReview.userName != authorUserName}">
+                        <br>
+                        <b sec:authentication="name"></b> is the author of the review and cannot rate it.
+                    </div>
+                </div>
             </td>
         </tr>
         <tr class="table-secondary">
@@ -67,12 +84,8 @@
         </tr>
     </table>
 </div>
-<!--<script>-->
-<!--    $("#input-id").rating();-->
-<!--</script>-->
-<!--<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>-->
-<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js" integrity="sha256-/ijcOLwFf26xEYAjW75FizKVo5tnTYiQddPZoLUHHZ8=" crossorigin="anonymous"></script>-->
-<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha256-WqU1JavFxSAMcLP2WIOI+GB2zWmShMI82mTpLDcqFUg=" crossorigin="anonymous"></script>-->
-<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-star-rating/4.0.6/js/star-rating.min.js" integrity="sha256-TX3InxvStdA3RUVQNAd3B6GW0P8aJPHmGoDxlwcAr98=" crossorigin="anonymous"></script>-->
+<div th:unless="${oneReview != null}">
+    There is no review with such ID!
+</div>
 </body>
 </html>

@@ -13,11 +13,22 @@ public class RatingService {
     private RatingRepository ratingRepository;
 
     @Autowired
-    public RatingService(RatingRepository ratingRepository) { this.ratingRepository = ratingRepository; }
+    public RatingService(RatingRepository ratingRepository) {
+        this.ratingRepository = ratingRepository;
+    }
 
-    public List<Rating> findByReviewID(Integer reviewID){
+    public List<Rating> findByReviewID(Integer reviewID) {
         return ratingRepository.findByReviewID(reviewID);
     }
 
-    public Rating saveRating(Rating rating) { return ratingRepository.save(rating);}
+    public Rating saveRating(Rating rating) {
+        return ratingRepository.save(rating);
+    }
+
+    public Rating findByUserNameReviewId(String userNameOfRating, Integer reviewID) {
+        return ratingRepository.findByUserNameReviewId(userNameOfRating, reviewID);
+    };
+
+
+
 }

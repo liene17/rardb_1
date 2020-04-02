@@ -10,8 +10,6 @@ public class ImdbListData implements Serializable {
     private String Poster;
 
 
-    // Getter Methods
-
     public String getTitle() {
         return Title;
     }
@@ -31,8 +29,6 @@ public class ImdbListData implements Serializable {
     public String getPoster() {
         return Poster;
     }
-
-    // Setter Methods
 
     public void setTitle(String Title) {
         this.Title = Title;

@@ -28,17 +28,17 @@ public class Rating {
     private Integer reviewID;
 
     @Column(name = "userNameOfRating")
-    private Integer userIdOfRating;
+    private String userNameOfRating;
 
     public Integer getRatingID() {
         return ratingID;
     }
 
-    public Rating(Integer ratingID, float stars, Integer reviewID, Integer userIdOfRating) {
+    public Rating(Integer ratingID, float stars, Integer reviewID, String userNameOfRating) {
         this.ratingID = ratingID;
         this.stars = stars;
         this.reviewID = reviewID;
-        this.userIdOfRating = userIdOfRating;
+        this.userNameOfRating = userNameOfRating;
     }
 
     public Rating() {
@@ -64,11 +64,11 @@ public class Rating {
         this.reviewID = reviewID;
     }
 
-    public Integer getUserUserIdOfRating() {
-        return userIdOfRating;
+    public String getUserUserIdOfRating() {
+        return userNameOfRating;
     }
 
-    public void setUserIdOfRating(Integer userIdOfRating) {
-        this.userIdOfRating = userIdOfRating;
+    public void setUserNameOfRating(String userNameOfRating) {
+        this.userNameOfRating = userNameOfRating;
     }
 }

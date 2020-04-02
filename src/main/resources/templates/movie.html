@@ -98,7 +98,7 @@
                             th:text="${#temporals.format(review.Date, 'dd-MM-yyy HH:mm')}"></span></span></th>
                 <td><span th:text="${#numbers.formatDecimal(review.ratingForThisReview, 1, 1, 'COMMA')}"></span></td>
                 <td><span th:text="${review.reviewText}"></span></td>
-                <td><a th:href="@{/read-review/{id}/{imdbID}(id=${review.reviewId}, imdbID=${oneMovie.imdbID})}"
+                <td><a th:href="@{/read-review/{id}(id=${review.reviewId})}"
                        class="btn btn-outline-dark">
                     <span>SEE FULL REVIEW INFO</span>
                 </a></td>
