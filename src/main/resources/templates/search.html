@@ -23,8 +23,9 @@
         </tr>
         <tr th:each="movie: ${movies}" class="table-secondary">
             <td>
-                <img class="poster-position" th:src="${movie.Poster}" height="200px"
-                     style="display: block;  margin-left: auto; margin-right: auto"/>
+                <img class="poster-position" th:src="${movie.Poster}"
+                     style="display: block;  margin-left: auto; margin-right: auto;
+                     max-width: 200px; min-width: 50px; max-height:200px; min-height: 50px"/>
             </td>
             <td>
                 <a th:href="@{/search/movie/{id}(id=${movie.imdbID})}" th:text="${movie.Title}"

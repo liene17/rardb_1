@@ -14,7 +14,7 @@ public class Rating {
 
     //TODO : in such approach any user can submit multiple times.
     // Think of adding userId and @Unique usage
-    //in progress by Santa
+    //done by Santa
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
